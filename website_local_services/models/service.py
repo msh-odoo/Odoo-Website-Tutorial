@@ -5,6 +5,7 @@ class Service(models.Model):
     _name = 'service.service'
     _description = 'Service Providers'
     _inherit = [
+        'website.published.multi.mixin',
         'website.cover_properties.mixin',
         'website.searchable.mixin',
     ]

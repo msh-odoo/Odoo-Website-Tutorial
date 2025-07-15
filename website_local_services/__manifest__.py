@@ -7,6 +7,7 @@
     'depends': ['base', 'web', 'website'],
     'data': [
         'security/ir.model.access.csv',
+        'data/local_service_website_data.xml',
         'views/service_views.xml',
         'views/service_templates.xml',
     ],

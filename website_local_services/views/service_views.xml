@@ -17,10 +17,14 @@
         <field name="arch" type="xml">
             <form string="Service">
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <field name="is_published" widget="website_redirect_button"/>
+                    </div>
                     <group>
                         <field name="name"/>
                         <field name="description"/>
                         <field name="tag_ids" widget="many2many_tags"/>
+                        <field name="cover_properties"/>
                     </group>
                 </sheet>
             </form>
