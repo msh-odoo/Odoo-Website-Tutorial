@@ -1,0 +1,111 @@
+<odoo>
+    <data>
+        <template id="service_providers" name="Service Providers Page">
+            <t t-call="website.layout">
+                <div class="container py-5">
+
+                <!-- Title -->
+                <h1 class="text-center mb-4">Local Service Providers</h1>
+
+                <!-- Category Filters -->
+                <div class="text-center mb-4">
+                    <a href="/services" class="btn btn-outline-primary mx-1" t-att-class="not active_category and 'btn-primary text-white' or ''">
+                    All
+                    </a>
+                    <t t-foreach="categories" t-as="cat">
+                    <a t-attf-href="/services?category={{ cat.name | urlencode }}"
+                        class="btn btn-outline-primary mx-1"
+                        t-att-class="active_category == cat.name and 'btn-primary text-white' or ''">
+                        <t t-esc="cat.name"/>
+                    </a>
+                    </t>
+                </div>
+
+                <!-- Provider Cards -->
+                <div class="row">
+                    <t t-foreach="providers" t-as="provider">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow rounded-3">
+                        <t t-if="provider.image">
+                            <img t-att-src="'data:image/png;base64,%s' % provider.image" class="card-img-top" style="object-fit: cover; height: 220px;"/>
+                        </t>
+                        <div class="card-body">
+                            <h5 class="card-title"><t t-esc="provider.name"/></h5>
+                            <p class="text-muted small mb-1">
+                            <i class="fa fa-briefcase me-1"></i> <t t-esc="provider.category_id.name"/>
+                            </p>
+                            <p class="card-text"><t t-esc="provider.description[:120]"/>...</p>
+                            <a t-attf-href="/service/{{ provider.id }}" class="btn btn-sm btn-outline-primary me-2">
+                            View Profile
+                            </a>
+                            <a t-if="provider.phone" t-attf-href="tel:{{ provider.phone }}" class="btn btn-sm btn-outline-success me-1">
+                            <i class="fa fa-phone"></i>
+                            </a>
+                            <a t-if="provider.email" t-attf-href="mailto:{{ provider.email }}" class="btn btn-sm btn-outline-secondary">
+                            <i class="fa fa-envelope"></i>
+                            </a>
+                        </div>
+                        </div>
+                    </div>
+                    </t>
+                </div>
+
+                </div>
+            </t>
+        </template>
+
+        <template id="service_provider_detail" name="Service Providers Page">
+            <t t-call="website.layout">
+                <div class="container py-5">
+
+                <!-- Title -->
+                <h1 class="text-center mb-4">Local Service Providers</h1>
+
+                <!-- Category Filters -->
+                <div class="text-center mb-4">
+                    <a href="/services" class="btn btn-outline-primary mx-1" t-att-class="not active_category and 'btn-primary text-white' or ''">
+                    All
+                    </a>
+                    <t t-foreach="categories" t-as="cat">
+                    <a t-attf-href="/services?category={{ cat.name | urlencode }}"
+                        class="btn btn-outline-primary mx-1"
+                        t-att-class="active_category == cat.name and 'btn-primary text-white' or ''">
+                        <t t-esc="cat.name"/>
+                    </a>
+                    </t>
+                </div>
+
+                <!-- Provider Cards -->
+                <div class="row">
+                    <t t-foreach="providers" t-as="provider">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow rounded-3">
+                        <t t-if="provider.image">
+                            <img t-att-src="'data:image/png;base64,%s' % provider.image" class="card-img-top" style="object-fit: cover; height: 220px;"/>
+                        </t>
+                        <div class="card-body">
+                            <h5 class="card-title"><t t-esc="provider.name"/></h5>
+                            <p class="text-muted small mb-1">
+                            <i class="fa fa-briefcase me-1"></i> <t t-esc="provider.category_id.name"/>
+                            </p>
+                            <p class="card-text"><t t-esc="provider.description[:120]"/>...</p>
+                            <a t-attf-href="/service/{{ provider.id }}" class="btn btn-sm btn-outline-primary me-2">
+                            View Profile
+                            </a>
+                            <a t-if="provider.phone" t-attf-href="tel:{{ provider.phone }}" class="btn btn-sm btn-outline-success me-1">
+                            <i class="fa fa-phone"></i>
+                            </a>
+                            <a t-if="provider.email" t-attf-href="mailto:{{ provider.email }}" class="btn btn-sm btn-outline-secondary">
+                            <i class="fa fa-envelope"></i>
+                            </a>
+                        </div>
+                        </div>
+                    </div>
+                    </t>
+                </div>
+
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

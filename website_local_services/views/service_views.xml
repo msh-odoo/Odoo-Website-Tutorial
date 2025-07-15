@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Service Views -->
+    <record id="view_service_service_tree" model="ir.ui.view">
+        <field name="name">service.service.tree</field>
+        <field name="model">service.service</field>
+        <field name="arch" type="xml">
+            <list string="Services">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_service_service_form" model="ir.ui.view">
+        <field name="name">service.service.form</field>
+        <field name="model">service.service</field>
+        <field name="arch" type="xml">
+            <form string="Service">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="tag_ids" widget="many2many_tags"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Expense Tag Views -->
+    <record id="view_service_tag_form" model="ir.ui.view">
+        <field name="name">service.tag.form</field>
+        <field name="model">service.tag</field>
+        <field name="arch" type="xml">
+            <form string="Service Tag">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="color" widget="color_picker"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_service_tag_tree" model="ir.ui.view">
+        <field name="name">service.tag.tree</field>
+        <field name="model">service.tag</field>
+        <field name="arch" type="xml">
+            <list string="Service Tags">
+                <field name="name"/>
+                <field name="color"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Service Provider Views -->
+    <record id="view_service_provider_tree" model="ir.ui.view">
+        <field name="name">service.provider.tree</field>
+        <field name="model">service.provider</field>
+        <field name="arch" type="xml">
+            <list string="Service Providers">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_service_provider_form" model="ir.ui.view">
+        <field name="name">service.provider.form</field>
+        <field name="model">service.provider</field>
+        <field name="arch" type="xml">
+            <form string="Service Provider">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="service_id"/>
+                        <field name="phone"/>
+                        <field name="email"/>
+                        <field name="profile_description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_local_services" model="ir.actions.act_window">
+        <field name="name">Local Services</field>
+        <field name="res_model">service.service</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_service_provider" model="ir.actions.act_window">
+        <field name="name">Service Prodiver</field>
+        <field name="res_model">service.provider</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_service_tag" model="ir.actions.act_window">
+        <field name="name">Tags</field>
+        <field name="res_model">service.tag</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menu Items (Updated) -->
+    <menuitem id="menu_local_services_root" name="Local Services"
+        web_icon="website_local_services,static/description/icon.png"/>
+    <menuitem id="menu_local_services" name="Services" parent="menu_local_services_root" action="action_local_services"/>
+
+    <menuitem id="menu_service_prodiver_root" name="Service Provider" parent="menu_local_services_root"/>
+    <menuitem id="menu_service_provider" name="Service Provider" parent="menu_service_prodiver_root" action="action_service_provider"/>
+
+    <menuitem id="menu_service_tag_root" name="Service Tags" parent="menu_local_services_root"/>
+    <menuitem id="menu_service_tag" name="Service Tags" parent="menu_service_tag_root" action="action_service_tag"/>
+
+</odoo>
