@@ -19,8 +19,9 @@ class ServiceProvider(models.Model):
     _name = 'service.provider'
     _description = 'Service Provider'
     _inherit = [
-        'website.cover_properties.mixin',
+        'website.published.multi.mixin',
         'website.searchable.mixin',
+        'avatar.mixin',
     ]
 
     name = fields.Char(string='Name', required=True)

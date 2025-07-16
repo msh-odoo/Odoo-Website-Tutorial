@@ -26,10 +26,10 @@
 
 <template id="services" name="Services">
     <t t-call="website.layout">
-        <div id="wrap" class="js_blog website_blog">
-            <section id="o_wblog_index_content" t-att-class="opt_blog_cards_design and 'o_wblog_page_cards_bg'">
+        <div id="wrap" class="js_services website_services">
+            <section id="o_services_index_content">
                 <!-- <t t-set="opt_service_list_view" t-value="is_view_active('website_local_services.opt_service_list_view')"/> -->
-                <t t-set="opt_service_list_view" t-value="False"/>
+                <t t-set="opt_service_list_view" t-value="True"/>
                 <t t-if="not opt_service_list_view">
                     <t t-set="colWidth" t-value="'px-2 col-sm-6 col-lg-4 col-xl-3'"/>
                 </t>
@@ -46,6 +46,9 @@
                                         <t t-if="opt_service_list_view">
                                             <div>
                                                 <t t-call="website_local_services.service_cover_image"/>
+                                            </div>
+                                            <div>
+                                                <t t-call="website_local_services.service_heading"/>
                                             </div>
                                             <!-- <div class="mt-3">
                                                 <a t-attf-href="/blog/#{slug(blog_post.blog_id)}/#{slug(blog_post)}" class="btn btn-primary">
@@ -79,55 +82,34 @@
 
 <template id="service_providers" name="Service Providers Page">
     <t t-call="website.layout">
-        <div class="container py-5">
-
-        <!-- Title -->
-        <h1 class="text-center mb-4">Local Service Providers</h1>
-
-        <!-- Category Filters -->
-        <div class="text-center mb-4">
-            <a href="/services" class="btn btn-outline-primary mx-1" t-att-class="not active_category and 'btn-primary text-white' or ''">
-            All
-            </a>
-            <t t-foreach="categories" t-as="cat">
-            <a t-attf-href="/services?category={{ cat.name | urlencode }}"
-                class="btn btn-outline-primary mx-1"
-                t-att-class="active_category == cat.name and 'btn-primary text-white' or ''">
-                <t t-esc="cat.name"/>
-            </a>
-            </t>
-        </div>
-
-        <!-- Provider Cards -->
-        <div class="row">
-            <t t-foreach="providers" t-as="provider">
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow rounded-3">
-                <t t-if="provider.image">
-                    <img t-att-src="'data:image/png;base64,%s' % provider.image" class="card-img-top" style="object-fit: cover; height: 220px;"/>
-                </t>
-                <div class="card-body">
-                    <h5 class="card-title"><t t-esc="provider.name"/></h5>
-                    <p class="text-muted small mb-1">
-                    <i class="fa fa-briefcase me-1"></i> <t t-esc="provider.category_id.name"/>
-                    </p>
-                    <p class="card-text"><t t-esc="provider.description[:120]"/>...</p>
-                    <a t-attf-href="/service/{{ provider.id }}" class="btn btn-sm btn-outline-primary me-2">
-                    View Profile
-                    </a>
-                    <a t-if="provider.phone" t-attf-href="tel:{{ provider.phone }}" class="btn btn-sm btn-outline-success me-1">
-                    <i class="fa fa-phone"></i>
-                    </a>
-                    <a t-if="provider.email" t-attf-href="mailto:{{ provider.email }}" class="btn btn-sm btn-outline-secondary">
-                    <i class="fa fa-envelope"></i>
-                    </a>
-                </div>
+        <section class="s_product_list pt64 pb64 o_colored_level" data-name="Items" style="position: relative;">
+            <div class="container-fluid">
+                <div class="row s_nb_column_fixed">
+                    <div class="col-lg-12">
+                        <p><br/></p>
+                    </div>
+                    <t t-foreach="providers" t-as="provider">
+                        <div data-name="Card" class="col-6 col-lg-2">
+                            <div class="s_card card o_cc o_cc1 o_colored_level o_card_img_top" data-name="Card">
+                                <figure class="o_card_img_wrapper ratio mb-0 ratio-4x3">
+                                    <a aria-label="Link to product" t-attf-href="/service/{{ provider.id }}">
+                                        <img t-attf-src="/web/image/service.provider/{{ provider.id }}/image_1920/80x80" style="padding: 0px; margin: 0px; height: auto; width: 80px;"/>
+                                    </a>
+                                </figure>
+                                <div class="card-body">
+                                    <h3 class="card-title h5-fs" style="text-align: center;">
+                                        <span class="base-fs">
+                                            <a href="/service/#{slug(provider)}" class="btn btn-primary" t-out="provider.name"></a>
+                                        </span>
+                                        <br/>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
                 </div>
             </div>
-            </t>
-        </div>
-
-        </div>
+        </section>
     </t>
 </template>
 

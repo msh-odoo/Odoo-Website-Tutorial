@@ -10,4 +10,8 @@
     &:hover .o_record_cover_image {
         opacity: 0.8;
     }
+
+    .o_record_cover_component.o_record_cover_image {
+        background-position: top;
+    }
 }

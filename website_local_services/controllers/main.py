@@ -16,13 +16,14 @@ class LocalServices(http.Controller):
             'services': services,
         })
 
-    @http.route(['/service/<model("service.service"):service>'], type='http', auth="public")
-    def provider_detail(self, service):
+    @http.route(['/service/<model("service.service"):service>'], type='http', auth="public", website=True)
+    def service_providers(self, service):
         return request.render('website_local_services.service_providers', {
-            'service': service
+            'service': service,
+            'providers': service.provider_ids,
         })
 
-    @http.route(['/service/<model("service.provider"):provider>'], type='http', auth="public")
+    @http.route(['/service/provider/<model("service.provider"):provider>'], type='http', auth="public")
     def provider_detail(self, provider):
         return request.render('website_local_services.service_provider_detail', {
             'provider': provider

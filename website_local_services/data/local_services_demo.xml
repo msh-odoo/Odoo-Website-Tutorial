@@ -64,6 +64,7 @@
 <p>Our clinic provides a child-friendly environment and personalized attention for every age group. Online consultations and emergency support are also available.</p>
 ]]>
             </field>
+            <field name="image_1920" type="base64" file="website_local_services/static/src/img/doctor1.jpg"/>
         </record>
 
         <record id="service_provider_doctor_2" model="service.provider">
@@ -77,6 +78,7 @@
 <p>Walk-in consultations available every weekday from 10AM to 5PM.</p>
 ]]>
             </field>
+            <field name="image_1920" type="base64" file="website_local_services/static/src/img/doctor2.jpg"/>
         </record>
 
         <record id="service_provider_doctor_3" model="service.provider">
@@ -90,6 +92,7 @@
 <p>Free dental checkup camp every first Sunday of the month.</p>
 ]]>
             </field>
+            <field name="image_1920" type="base64" file="website_local_services/static/src/img/doctor3.jpg"/>
         </record>
 
         <record id="service_provider_doctor_4" model="service.provider">
@@ -103,6 +106,7 @@
 <p>Tele-consultation available for outstation patients. Book online today.</p>
 ]]>
             </field>
+            <field name="image_1920" type="base64" file="website_local_services/static/src/img/doctor4.jpg"/>
         </record>
 
         <record id="service_provider_plumber_5" model="service.provider">
@@ -116,6 +120,7 @@
 <p>Available for same-day service and emergency calls. Call now for a free estimate!</p>
 ]]>
             </field>
+            <field name="image_1920" type="base64" file="website_local_services/static/src/img/plumber1.jpg"/>
         </record>
 
         <record id="service_provider_plumber_6" model="service.provider">
@@ -129,6 +134,7 @@
 <p>Online booking available. Discounts for first-time customers.</p>
 ]]>
             </field>
+            <field name="image_1920" type="base64" file="website_local_services/static/src/img/plumber2.jpg"/>
         </record>
 
         <record id="service_provider_plumber_7" model="service.provider">
@@ -142,6 +148,7 @@
 <p>Free site inspection within city limits. Call us today!</p>
 ]]>
             </field>
+            <field name="image_1920" type="base64" file="website_local_services/static/src/img/plumber3.jpg"/>
         </record>
 
         <record id="service_provider_plumber_8" model="service.provider">
@@ -155,6 +162,7 @@
 <p>Emergency service available 7 days a week. Book online or via phone.</p>
 ]]>
             </field>
+            <field name="image_1920" type="base64" file="website_local_services/static/src/img/plumber4.jpg"/>
         </record>
 
         <record id="service_provider_electrician_1" model="service.provider">
@@ -168,6 +176,7 @@
 <p>Emergency support available 24/7. Book a visit online or call our hotline.</p>
 ]]>
             </field>
+            <field name="image_1920" type="base64" file="website_local_services/static/src/img/electrician1.jpg"/>
         </record>
 
         <record id="service_provider_electrician_2" model="service.provider">
@@ -181,6 +190,7 @@
 <p>Same-day appointments available. Satisfaction guaranteed.</p>
 ]]>
             </field>
+            <field name="image_1920" type="base64" file="website_local_services/static/src/img/electrician2.jpg"/>
         </record>
 
         <record id="service_provider_electrician_3" model="service.provider">
@@ -194,6 +204,7 @@
 <p>Contact us today for a free home energy consultation.</p>
 ]]>
             </field>
+            <field name="image_1920" type="base64" file="website_local_services/static/src/img/electrician3.jpg"/>
         </record>
 
         <record id="service_provider_electrician_4" model="service.provider">
@@ -207,6 +218,7 @@
 <p>Operating in your area for 15+ years. Book a site visit now.</p>
 ]]>
             </field>
+            <field name="image_1920" type="base64" file="website_local_services/static/src/img/electrician4.jpg"/>
         </record>
 
         <record id="service_provider_tutor_1" model="service.provider">
@@ -220,6 +232,7 @@
 <p>Available online and in-person. Customized study plans for each student.</p>
 ]]>
             </field>
+            <field name="image_1920" type="base64" file="website_local_services/static/src/img/tutor1.jpg"/>
         </record>
 
         <record id="service_provider_tutor_2" model="service.provider">
@@ -233,6 +246,7 @@
 <p>Flexible batch timings. Weekend and evening classes available.</p>
 ]]>
             </field>
+            <field name="image_1920" type="base64" file="website_local_services/static/src/img/tutor2.jpg"/>
         </record>
 
         <record id="service_provider_tutor_3" model="service.provider">
@@ -246,6 +260,7 @@
 <p>Online and classroom-based courses. Demo class available on request.</p>
 ]]>
             </field>
+            <field name="image_1920" type="base64" file="website_local_services/static/src/img/tutor3.jpg"/>
         </record>
 
         <record id="service_provider_tutor_4" model="service.provider">
@@ -259,7 +274,7 @@
 <p>Scholarship tests available for meritorious students. Enroll now!</p>
 ]]>
             </field>
+            <field name="image_1920" type="base64" file="website_local_services/static/src/img/tutor4.jpg"/>
         </record>
-
     </data>
 </odoo>
