@@ -99,7 +99,7 @@
                                 <div class="card-body">
                                     <h3 class="card-title h5-fs" style="text-align: center;">
                                         <span class="base-fs">
-                                            <a href="/service/#{slug(provider)}" class="btn btn-primary" t-out="provider.name"></a>
+                                            <a t-attf-href="/service/provider/#{slug(provider)}" class="btn btn-primary" t-out="provider.name"></a>
                                         </span>
                                         <br/>
                                     </h3>
@@ -115,28 +115,38 @@
 
 <template id="service_provider_detail" name="Service Providers Page">
     <t t-call="website.layout">
-        <div class="container py-5">
-
         <!-- Title -->
-        <h1 class="text-center mb-4">Local Service Providers</h1>
-
-        <!-- Category Filters -->
-        <div class="text-center mb-4">
-            <a href="/services" class="btn btn-outline-primary mx-1" t-att-class="not active_category and 'btn-primary text-white' or ''">
-            All
-            </a>
-            <t t-foreach="categories" t-as="cat">
-            <a t-attf-href="/services?category={{ cat.name | urlencode }}"
-                class="btn btn-outline-primary mx-1"
-                t-att-class="active_category == cat.name and 'btn-primary text-white' or ''">
-                <t t-esc="cat.name"/>
-            </a>
-            </t>
+        <h1 class="text-center mb-4">Local Service Provider</h1>
+        <!-- Provider Details -->
+        <div class="container my-4">
+            <div class="row" itemscope="itemscope" itemtype="http://schema.org/Organization">
+                <div class="col-lg-3 col-md-4">
+                    <div>
+                        <img t-attf-src="/web/image/service.provider/#{provider.id}/avatar_1920" itemprop="image" class="img img-fluid w-100 mb-2 rounded-3 border" style="object-fit: cover;" alt="Coorge Tea Cafe" loading="lazy"/>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-8">
+                    <div class="d-flex align-items-center flex-wrap mb-4">
+                        <div class="flex-grow-1">
+                            <span class="col-lg-12 text-muted">
+                                <span t-field="provider.service_id"></span>
+                            </span>
+                            <h1 id="provider_name" itemprop="name" t-field="provider.name"></h1>
+                        </div>
+                    </div>
+                    <div id="right_column">
+                        <div t-out="provider.phone"></div>
+                        <div t-out="provider.email"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12" t-field="provider.profile_description">
+                </div>
+            </div>
         </div>
 
-        <!-- Provider Cards -->
-        <div class="row">
-            <t t-foreach="providers" t-as="provider">
+        <!-- <div class="row">
             <div class="col-md-4 mb-4">
                 <div class="card h-100 shadow rounded-3">
                 <t t-if="provider.image">
@@ -160,10 +170,9 @@
                 </div>
                 </div>
             </div>
-            </t>
         </div>
 
-        </div>
+        </div> -->
     </t>
 </template>
 </odoo>

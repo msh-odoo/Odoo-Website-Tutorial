@@ -23,8 +23,8 @@ class LocalServices(http.Controller):
             'providers': service.provider_ids,
         })
 
-    @http.route(['/service/provider/<model("service.provider"):provider>'], type='http', auth="public")
+    @http.route(['/service/provider/<model("service.provider"):provider>'], type='http', auth="public", website=True)
     def provider_detail(self, provider):
         return request.render('website_local_services.service_provider_detail', {
-            'provider': provider
+            'provider': provider,
         })
