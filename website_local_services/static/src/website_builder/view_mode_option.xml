@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<t t-name="website_local_services.ViewModeOption">
+    <BuilderContext action="'websiteConfig'">
+        <BuilderRow label.translate="Layout">
+            <BuilderSelect>
+                <BuilderSelectItem actionParam="{views: []}">Grid</BuilderSelectItem>
+                <BuilderSelectItem actionParam="{views: ['website_blog.opt_service_list_view']}">List</BuilderSelectItem>
+            </BuilderSelect>
+        </BuilderRow>
+    </BuilderContext>
+</t>
+</templates>

@@ -18,6 +18,9 @@
         'web.assets_frontend': [
             'website_local_services/static/src/**/*',
         ],
+        'html_builder.assets': [
+            'website_local_services/static/src/website_builder/**/*',
+        ],
     },
     'installable': True,
     'application': True,
