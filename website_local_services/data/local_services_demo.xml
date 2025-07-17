@@ -1,280 +1,278 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <record id="service_1" model="service.service">
-            <field name="name">Health</field>
-            <field name="description"><![CDATA[
+    <record id="service_1" model="service.service">
+        <field name="name">Health</field>
+        <field name="description"><![CDATA[
 <p class="lead">Serenity Health & Wellness Center is a modern haven for individuals seeking holistic medical care in a calm and compassionate environment.</p>
 <p>Our center offers a wide range of health services tailored to meet individual needs. Contrary to traditional clinics, Serenity focuses on preventive care, patient education, and integrated treatment methods. The center is designed to accommodate both high-tech diagnostic services and personalized consultations. With serene interiors and thoughtfully planned facilities, patients feel comforted from the moment they walk in. The surrounding landscape and natural light contribute to a healing atmosphere, supporting both physical and mental well-being.</p>
 
 <p>One of the most unique aspects of Serenity is its diverse team of healthcare professionals. Our team includes general physicians, specialists, physiotherapists, mental health experts, and nutritionists — all working together to offer truly integrated care. We believe health isn’t just about treatment; it's about lifestyle and long-term support.</p>
 ]]>
-            </field>
-            <field name="is_published" eval="True"/>
-            <field name="cover_properties">{"background-image": "url('/website_local_services/static/src/img/doctor.jpg')", "resize_class": "o_record_has_cover o_half_screen_height", "opacity": "0"}</field>
-        </record>
+        </field>
+        <field name="is_published" eval="True"/>
+        <field name="cover_properties">{"background-image": "url('/website_local_services/static/src/img/doctor.jpg')", "resize_class": "o_record_has_cover o_half_screen_height", "opacity": "0"}</field>
+    </record>
 
-        <record id="service_2" model="service.service">
-            <field name="name">Plumber</field>
-            <field name="description"><![CDATA[
+    <record id="service_2" model="service.service">
+        <field name="name">Plumber</field>
+        <field name="description"><![CDATA[
 <p class="lead">Reliable plumbing services to keep your home and business running smoothly, 24/7.</p>
 <p>Our team of licensed plumbers is available for all types of repair and installation jobs — from leaky faucets and clogged drains to full bathroom renovations and pipeline inspections. We ensure quick response times and use high-quality materials to guarantee long-lasting solutions.</p>
 
 <p>Whether it's an emergency or a scheduled upgrade, our plumbers arrive on time, equipped with modern tools and experience that saves you time, money, and stress.</p>
 ]]>
-            </field>
-            <field name="is_published" eval="True"/>
-            <field name="cover_properties">{"background-image": "url('/website_local_services/static/src/img/plumber.jpg')", "resize_class": "o_record_has_cover o_half_screen_height", "opacity": "0"}</field>
-        </record>
+        </field>
+        <field name="is_published" eval="True"/>
+        <field name="cover_properties">{"background-image": "url('/website_local_services/static/src/img/plumber.jpg')", "resize_class": "o_record_has_cover o_half_screen_height", "opacity": "0"}</field>
+    </record>
 
-        <record id="service_3" model="service.service">
-            <field name="name">Electrician</field>
-            <field name="description"><![CDATA[
+    <record id="service_3" model="service.service">
+        <field name="name">Electrician</field>
+        <field name="description"><![CDATA[
 <p class="lead">Certified electricians for safe, efficient electrical services at home or work.</p>
 <p>We handle everything from wiring and panel upgrades to lighting installations and fault repairs. Our team is trained to follow all safety codes and is committed to delivering hassle-free service with full transparency.</p>
 
 <p>Whether you're facing a power outage, want to install smart home features, or need regular maintenance, we’re here to help — on time and on budget.</p>
 ]]>
-            </field>
-            <field name="is_published" eval="True"/>
-            <field name="cover_properties">{"background-image": "url('/website_local_services/static/src/img/electrician.jpg')", "resize_class": "o_record_has_cover o_half_screen_height", "opacity": "0"}</field>
-        </record>
+        </field>
+        <field name="is_published" eval="True"/>
+        <field name="cover_properties">{"background-image": "url('/website_local_services/static/src/img/electrician.jpg')", "resize_class": "o_record_has_cover o_half_screen_height", "opacity": "0"}</field>
+    </record>
 
-        <record id="service_4" model="service.service">
-            <field name="name">Tutor</field>
-            <field name="description"><![CDATA[
+    <record id="service_4" model="service.service">
+        <field name="name">Tutor</field>
+        <field name="description"><![CDATA[
 <p class="lead">Personalized tutoring for academic success — from primary to professional levels.</p>
 <p>Our tutors specialize in various subjects including Math, Science, English, and Coding. Sessions are tailored to match each student’s pace and learning style, ensuring better understanding and performance.</p>
 
 <p>Online and in-person options available. Whether it's exam prep, conceptual clarity, or competitive training — our experts are ready to guide you.</p>
 ]]>
-            </field>
-            <field name="is_published" eval="True"/>
-            <field name="cover_properties">{"background-image": "url('/website_local_services/static/src/img/tutor.jpg')", "resize_class": "o_record_has_cover o_half_screen_height", "opacity": "0"}</field>
-        </record>
+        </field>
+        <field name="is_published" eval="True"/>
+        <field name="cover_properties">{"background-image": "url('/website_local_services/static/src/img/tutor.jpg')", "resize_class": "o_record_has_cover o_half_screen_height", "opacity": "0"}</field>
+    </record>
 
-        <record id="service_provider_doctor_1" model="service.provider">
-            <field name="name">Dr. Mohammed Shekha</field>
-            <field name="service_id" ref="service_1"></field>
-            <field name="phone" eval="DateTime.now() - relativedelta(days=2)"></field>
-            <field name="email">2000</field>
-            <field name="profile_description"><![CDATA[
+    <record id="service_provider_doctor_1" model="service.provider">
+        <field name="name">Dr. Mohammed Shekha</field>
+        <field name="service_id" ref="service_1"></field>
+        <field name="phone">+91-990123456</field>
+        <field name="email">msh.shekha@medicare.com</field>
+        <field name="profile_description"><![CDATA[
 <p class="lead">Expert medical care for children — from infancy to adolescence.</p>
 <p>Our pediatricians ensure that your child receives gentle and thorough care. From routine checkups to vaccinations and developmental screenings, we partner with parents to support healthy growth.</p>
 <p>Our clinic provides a child-friendly environment and personalized attention for every age group. Online consultations and emergency support are also available.</p>
 ]]>
-            </field>
-            <field name="image_1920" type="base64" file="website_local_services/static/src/img/doctor1.jpg"/>
-        </record>
+        </field>
+        <field name="image_1920" type="base64" file="website_local_services/static/src/img/doctor1.jpg"/>
+    </record>
 
-        <record id="service_provider_doctor_2" model="service.provider">
-            <field name="name">Dr. Rohan Mehta</field>
-            <field name="service_id" ref="service_1"/>
-            <field name="phone">+91-9901234567</field>
-            <field name="email">rohan.mehta@medicare.com</field>
-            <field name="profile_description"><![CDATA[
+    <record id="service_provider_doctor_2" model="service.provider">
+        <field name="name">Dr. Rohan Mehta</field>
+        <field name="service_id" ref="service_1"/>
+        <field name="phone">+91-990123457</field>
+        <field name="email">rohan.mehta@medicare.com</field>
+        <field name="profile_description"><![CDATA[
 <p class="lead">Primary healthcare expert with 10+ years of experience treating adults and seniors.</p>
 <p>Dr. Mehta focuses on preventive care, chronic disease management, and patient education. He’s known for his accurate diagnoses and holistic approach to wellness.</p>
 <p>Walk-in consultations available every weekday from 10AM to 5PM.</p>
 ]]>
-            </field>
-            <field name="image_1920" type="base64" file="website_local_services/static/src/img/doctor2.jpg"/>
-        </record>
+        </field>
+        <field name="image_1920" type="base64" file="website_local_services/static/src/img/doctor2.jpg"/>
+    </record>
 
-        <record id="service_provider_doctor_3" model="service.provider">
-                <field name="name">Dr. Sneha Roy</field>
-                <field name="service_id" ref="service_1"/>
-                <field name="phone">+91-9123456789</field>
-                <field name="email">sneha.roy@smilecare.in</field>
-                <field name="profile_description"><![CDATA[
+    <record id="service_provider_doctor_3" model="service.provider">
+            <field name="name">Dr. Sneha Roy</field>
+            <field name="service_id" ref="service_1"/>
+            <field name="phone">+91-912456789</field>
+            <field name="email">sneha.roy@smilecare.in</field>
+            <field name="profile_description"><![CDATA[
 <p class="lead">Passionate about dental wellness and restoring smiles with care.</p>
 <p>Dr. Sneha specializes in painless root canals, cosmetic dentistry, and smile makeovers. Her clinic is equipped with modern tools and adheres to strict hygiene standards.</p>
 <p>Free dental checkup camp every first Sunday of the month.</p>
 ]]>
-            </field>
-            <field name="image_1920" type="base64" file="website_local_services/static/src/img/doctor3.jpg"/>
-        </record>
+        </field>
+        <field name="image_1920" type="base64" file="website_local_services/static/src/img/doctor3.jpg"/>
+    </record>
 
-        <record id="service_provider_doctor_4" model="service.provider">
-            <field name="name">Dr. Arjun Desai</field>
-            <field name="service_id" ref="service_1"/>
-            <field name="phone">+91-9888877777</field>
-            <field name="email">arjun.desai@skinfit.co</field>
-            <field name="profile_description"><![CDATA[
+    <record id="service_provider_doctor_4" model="service.provider">
+        <field name="name">Dr. Arjun Desai</field>
+        <field name="service_id" ref="service_1"/>
+        <field name="phone">+91-988887777</field>
+        <field name="email">arjun.desai@skinfit.co</field>
+        <field name="profile_description"><![CDATA[
 <p class="lead">Helping you feel confident in your skin with expert dermatological care.</p>
 <p>Dr. Desai treats acne, pigmentation, eczema, and more. His approach blends clinical expertise with aesthetic treatments tailored for each skin type.</p>
 <p>Tele-consultation available for outstation patients. Book online today.</p>
 ]]>
-            </field>
-            <field name="image_1920" type="base64" file="website_local_services/static/src/img/doctor4.jpg"/>
-        </record>
+        </field>
+        <field name="image_1920" type="base64" file="website_local_services/static/src/img/doctor4.jpg"/>
+    </record>
 
-        <record id="service_provider_plumber_5" model="service.provider">
-            <field name="name">Rakesh Plumbing Services</field>
-            <field name="service_id" ref="service_2"/>
-            <field name="phone">+91-9012345678</field>
-            <field name="email">contact@rakeshplumbing.in</field>
-            <field name="profile_description"><![CDATA[
+    <record id="service_provider_plumber_5" model="service.provider">
+        <field name="name">Rakesh Plumbing Services</field>
+        <field name="service_id" ref="service_2"/>
+        <field name="phone">+91-901235678</field>
+        <field name="email">contact@rakeshplumbing.in</field>
+        <field name="profile_description"><![CDATA[
 <p class="lead">Fast and affordable plumbing services across the city.</p>
 <p>We handle pipe leaks, tap installations, drain blockages, and bathroom fittings. Our team ensures a mess-free experience with durable repairs that last.</p>
 <p>Available for same-day service and emergency calls. Call now for a free estimate!</p>
 ]]>
-            </field>
-            <field name="image_1920" type="base64" file="website_local_services/static/src/img/plumber1.jpg"/>
-        </record>
+        </field>
+        <field name="image_1920" type="base64" file="website_local_services/static/src/img/plumber1.jpg"/>
+    </record>
 
-        <record id="service_provider_plumber_6" model="service.provider">
-            <field name="name">AquaFix Solutions</field>
-            <field name="service_id" ref="service_2"/>
-            <field name="phone">+91-9822003344</field>
-            <field name="email">support@aquafix.co</field>
-            <field name="profile_description"><![CDATA[
+    <record id="service_provider_plumber_6" model="service.provider">
+        <field name="name">AquaFix Solutions</field>
+        <field name="service_id" ref="service_2"/>
+        <field name="phone">+91-982203344</field>
+        <field name="email">support@aquafix.co</field>
+        <field name="profile_description"><![CDATA[
 <p class="lead">Trusted by hundreds of homeowners and businesses for plumbing peace of mind.</p>
 <p>AquaFix offers maintenance, renovation, and emergency plumbing with transparent pricing and professional service. Certified technicians. Guaranteed workmanship.</p>
 <p>Online booking available. Discounts for first-time customers.</p>
 ]]>
-            </field>
-            <field name="image_1920" type="base64" file="website_local_services/static/src/img/plumber2.jpg"/>
-        </record>
+        </field>
+        <field name="image_1920" type="base64" file="website_local_services/static/src/img/plumber2.jpg"/>
+    </record>
 
-        <record id="service_provider_plumber_7" model="service.provider">
-            <field name="name">Shah Brothers Plumbing</field>
-            <field name="service_id" ref="service_2"/>
-            <field name="phone">+91-9988776655</field>
-            <field name="email">shahplumbers@gmail.com</field>
-            <field name="profile_description"><![CDATA[
+    <record id="service_provider_plumber_7" model="service.provider">
+        <field name="name">Shah Brothers Plumbing</field>
+        <field name="service_id" ref="service_2"/>
+        <field name="phone">+91-998776655</field>
+        <field name="email">shahplumbers@gmail.com</field>
+        <field name="profile_description"><![CDATA[
 <p class="lead">Family-run plumbing specialists with 25+ years of trusted service.</p>
 <p>We specialize in old building plumbing upgrades, kitchen/bath installations, and water tank issues. Our team values punctuality and neat work.</p>
 <p>Free site inspection within city limits. Call us today!</p>
 ]]>
-            </field>
-            <field name="image_1920" type="base64" file="website_local_services/static/src/img/plumber3.jpg"/>
-        </record>
+        </field>
+        <field name="image_1920" type="base64" file="website_local_services/static/src/img/plumber3.jpg"/>
+    </record>
 
-        <record id="service_provider_plumber_8" model="service.provider">
-            <field name="name">CityFlow Plumbing Experts</field>
-            <field name="service_id" ref="service_3"/>
-            <field name="phone">+91-9811122233</field>
-            <field name="email">bookings@cityflowpro.com</field>
-            <field name="profile_description"><![CDATA[
+    <record id="service_provider_plumber_8" model="service.provider">
+        <field name="name">CityFlow Plumbing Experts</field>
+        <field name="service_id" ref="service_3"/>
+        <field name="phone">+91-981122233</field>
+        <field name="email">bookings@cityflowpro.com</field>
+        <field name="profile_description"><![CDATA[
 <p class="lead">Quick-response plumbing team for residential and commercial needs.</p>
 <p>Our certified plumbers are equipped with leak detectors, hydro jets, and the latest tools for efficient repairs. We handle everything from minor taps to complex pipelines.</p>
 <p>Emergency service available 7 days a week. Book online or via phone.</p>
 ]]>
-            </field>
-            <field name="image_1920" type="base64" file="website_local_services/static/src/img/plumber4.jpg"/>
-        </record>
+        </field>
+        <field name="image_1920" type="base64" file="website_local_services/static/src/img/plumber4.jpg"/>
+    </record>
 
-        <record id="service_provider_electrician_1" model="service.provider">
-            <field name="name">PowerTech Electric Works</field>
-            <field name="service_id" ref="service_3"/>
-            <field name="phone">+91-9898989898</field>
-            <field name="email">info@powertechworks.com</field>
-            <field name="profile_description"><![CDATA[
+    <record id="service_provider_electrician_1" model="service.provider">
+        <field name="name">PowerTech Electric Works</field>
+        <field name="service_id" ref="service_3"/>
+        <field name="phone">+91-998989898</field>
+        <field name="email">info@powertechworks.com</field>
+        <field name="profile_description"><![CDATA[
 <p class="lead">Certified electricians for homes, offices, and industrial projects.</p>
 <p>PowerTech handles all electrical tasks — from wiring and fuse box upgrades to LED fittings and safety audits. We follow industry safety protocols and offer fast, affordable service.</p>
 <p>Emergency support available 24/7. Book a visit online or call our hotline.</p>
 ]]>
-            </field>
-            <field name="image_1920" type="base64" file="website_local_services/static/src/img/electrician1.jpg"/>
-        </record>
+        </field>
+        <field name="image_1920" type="base64" file="website_local_services/static/src/img/electrician1.jpg"/>
+    </record>
 
-        <record id="service_provider_electrician_2" model="service.provider">
-            <field name="name">Elite Volt Services</field>
-            <field name="service_id" ref="service_3"/>
-            <field name="phone">+91-9977886655</field>
-            <field name="email">support@elitevolt.in</field>
-            <field name="profile_description"><![CDATA[
+    <record id="service_provider_electrician_2" model="service.provider">
+        <field name="name">Elite Volt Services</field>
+        <field name="service_id" ref="service_3"/>
+        <field name="phone">+91-997886655</field>
+        <field name="email">support@elitevolt.in</field>
+        <field name="profile_description"><![CDATA[
 <p class="lead">End-to-end electrical services from trained, insured professionals.</p>
 <p>Elite Volt specializes in smart home automation, electrical troubleshooting, appliance installation, and load balancing. We guarantee neat work and reliable fixes.</p>
 <p>Same-day appointments available. Satisfaction guaranteed.</p>
 ]]>
-            </field>
-            <field name="image_1920" type="base64" file="website_local_services/static/src/img/electrician2.jpg"/>
-        </record>
+        </field>
+        <field name="image_1920" type="base64" file="website_local_services/static/src/img/electrician2.jpg"/>
+    </record>
 
-        <record id="service_provider_electrician_3" model="service.provider">
-            <field name="name">Green Circuit Electricals</field>
-            <field name="service_id" ref="service_3"/>
-            <field name="phone">+91-9123456780</field>
-            <field name="email">greencircuit@gmail.com</field>
-            <field name="profile_description"><![CDATA[
+    <record id="service_provider_electrician_3" model="service.provider">
+        <field name="name">Green Circuit Electricals</field>
+        <field name="service_id" ref="service_3"/>
+        <field name="phone">+91-913456780</field>
+        <field name="email">greencircuit@gmail.com</field>
+        <field name="profile_description"><![CDATA[
 <p class="lead">Eco-conscious electrical services for a smarter, safer home.</p>
 <p>We focus on energy-efficient solutions, including solar power integration, LED retrofitting, and energy-saving audits. Our certified electricians use eco-friendly materials where possible.</p>
 <p>Contact us today for a free home energy consultation.</p>
 ]]>
-            </field>
-            <field name="image_1920" type="base64" file="website_local_services/static/src/img/electrician3.jpg"/>
-        </record>
+        </field>
+        <field name="image_1920" type="base64" file="website_local_services/static/src/img/electrician3.jpg"/>
+    </record>
 
-        <record id="service_provider_electrician_4" model="service.provider">
-            <field name="name">Desai Electrical Contractors</field>
-            <field name="service_id" ref="service_3"/>
-            <field name="phone">+91-9090909090</field>
-            <field name="email">desai.electricals@yahoo.com</field>
-            <field name="profile_description"><![CDATA[
+    <record id="service_provider_electrician_4" model="service.provider">
+        <field name="name">Desai Electrical Contractors</field>
+        <field name="service_id" ref="service_3"/>
+        <field name="phone">+91-900909090</field>
+        <field name="email">desai.electricals@yahoo.com</field>
+        <field name="profile_description"><![CDATA[
 <p class="lead">Trusted electrical contractor for commercial and residential wiring.</p>
 <p>Our team offers reliable electrical design, installation, and fault repair services. From meter setup to surge protection, we take care of everything, with transparency and quality.</p>
 <p>Operating in your area for 15+ years. Book a site visit now.</p>
 ]]>
-            </field>
-            <field name="image_1920" type="base64" file="website_local_services/static/src/img/electrician4.jpg"/>
-        </record>
+        </field>
+        <field name="image_1920" type="base64" file="website_local_services/static/src/img/electrician4.jpg"/>
+    </record>
 
-        <record id="service_provider_tutor_1" model="service.provider">
-            <field name="name">LearnWell Academy</field>
-            <field name="service_id" ref="service_4"/>
-            <field name="phone">+91-9811112233</field>
-            <field name="email">contact@learnwell.ac.in</field>
-            <field name="profile_description"><![CDATA[
+    <record id="service_provider_tutor_1" model="service.provider">
+        <field name="name">LearnWell Academy</field>
+        <field name="service_id" ref="service_4"/>
+        <field name="phone">+91-911112233</field>
+        <field name="email">contact@learnwell.ac.in</field>
+        <field name="profile_description"><![CDATA[
 <p class="lead">One-on-one tutoring for school students — all boards and grades.</p>
 <p>Our expert tutors specialize in subjects like Math, Science, and English. We focus on conceptual clarity, regular assessments, and building confidence in students.</p>
 <p>Available online and in-person. Customized study plans for each student.</p>
 ]]>
-            </field>
-            <field name="image_1920" type="base64" file="website_local_services/static/src/img/tutor1.jpg"/>
-        </record>
+        </field>
+        <field name="image_1920" type="base64" file="website_local_services/static/src/img/tutor1.jpg"/>
+    </record>
 
-        <record id="service_provider_tutor_2" model="service.provider">
-            <field name="name">CodeCraft Institute</field>
-            <field name="service_id" ref="service_4"/>
-            <field name="phone">+91-9876543211</field>
-            <field name="email">admissions@codecraft.in</field>
-            <field name="profile_description"><![CDATA[
+    <record id="service_provider_tutor_2" model="service.provider">
+        <field name="name">CodeCraft Institute</field>
+        <field name="service_id" ref="service_4"/>
+        <field name="phone">+91-976543211</field>
+        <field name="email">admissions@codecraft.in</field>
+        <field name="profile_description"><![CDATA[
 <p class="lead">Future-ready coding and technology classes for all age groups.</p>
 <p>We offer hands-on learning in Python, HTML/CSS, JavaScript, and AI fundamentals. Ideal for beginners, school students, and job-seekers looking to upgrade skills.</p>
 <p>Flexible batch timings. Weekend and evening classes available.</p>
 ]]>
-            </field>
-            <field name="image_1920" type="base64" file="website_local_services/static/src/img/tutor2.jpg"/>
-        </record>
+        </field>
+        <field name="image_1920" type="base64" file="website_local_services/static/src/img/tutor2.jpg"/>
+    </record>
 
-        <record id="service_provider_tutor_3" model="service.provider">
-            <field name="name">Bright Minds Language Studio</field>
-            <field name="service_id" ref="service_4"/>
-            <field name="phone">+91-9090901212</field>
-            <field name="email">hello@brightmindslanguages.com</field>
-            <field name="profile_description"><![CDATA[
+    <record id="service_provider_tutor_3" model="service.provider">
+        <field name="name">Bright Minds Language Studio</field>
+        <field name="service_id" ref="service_4"/>
+        <field name="phone">+91-990901212</field>
+        <field name="email">hello@brightmindslanguages.com</field>
+        <field name="profile_description"><![CDATA[
 <p class="lead">Learn spoken English, IELTS prep, and foreign languages with experts.</p>
 <p>We provide professional coaching for spoken and written English, French, and German. Classes are interactive, with practice modules and certified instructors.</p>
 <p>Online and classroom-based courses. Demo class available on request.</p>
 ]]>
-            </field>
-            <field name="image_1920" type="base64" file="website_local_services/static/src/img/tutor3.jpg"/>
-        </record>
+        </field>
+        <field name="image_1920" type="base64" file="website_local_services/static/src/img/tutor3.jpg"/>
+    </record>
 
-        <record id="service_provider_tutor_4" model="service.provider">
-            <field name="name">ExcelEdge Coaching</field>
-            <field name="service_id" ref="service_4"/>
-            <field name="phone">+91-9123456790</field>
-            <field name="email">info@exceledgeclasses.com</field>
-            <field name="profile_description"><![CDATA[
+    <record id="service_provider_tutor_4" model="service.provider">
+        <field name="name">ExcelEdge Coaching</field>
+        <field name="service_id" ref="service_4"/>
+        <field name="phone">+91-923456790</field>
+        <field name="email">info@exceledgeclasses.com</field>
+        <field name="profile_description"><![CDATA[
 <p class="lead">Expert-led coaching for JEE, NEET, and other competitive exams.</p>
 <p>With proven results and structured study material, we offer intensive prep courses and regular test series for engineering and medical entrance exams.</p>
 <p>Scholarship tests available for meritorious students. Enroll now!</p>
 ]]>
-            </field>
-            <field name="image_1920" type="base64" file="website_local_services/static/src/img/tutor4.jpg"/>
-        </record>
-    </data>
+        </field>
+        <field name="image_1920" type="base64" file="website_local_services/static/src/img/tutor4.jpg"/>
+    </record>
 </odoo>

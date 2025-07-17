@@ -24,9 +24,25 @@
    </a>
 </template>
 
+<template id="service_nav" name="Service Navbar Template">
+    <nav t-attf-class="navbar navbar-expand-lg navbar-light oe_navbar pt-4 pb-0 px-0 #{additionnal_classes}">
+        <div t-attf-class="container gap-2 w-100 #{wblog_nav_offcanvas and 'flex-nowrap' or 'flex-wrap flex-sm-nowrap'}">
+            <!-- 'Search Box' -->
+            <input type="search" name="search" t-att-class="'search-query form-control oe_search_box %s %s' % (_input_classes or '', '' if default_style else 'border-0 bg-light')" t-att-placeholder="placeholder if placeholder else search_placeholder" t-att-value="search"/>
+            <button class="btn btn-primary ms-2 oe_search_button" t-on-click="onSearch">
+                <i class="fa fa-search"/>
+            </button>
+        </div>
+    </nav>
+</template>
+
 <template id="services" name="Services">
     <t t-call="website.layout">
         <div id="wrap" class="js_services website_services">
+            <t t-call="website_local_services.service_nav">
+                <t t-set="search" t-value="original_search or search"/>
+                <t t-set="additional_classes" t-value="'mt-3'"/>
+            </t>
             <section id="o_services_index_content">
                 <!-- <t t-set="opt_service_list_view" t-value="is_view_active('website_local_services.opt_service_list_view')"/> -->
                 <t t-set="opt_service_list_view" t-value="True"/>
@@ -118,7 +134,7 @@
         <!-- Title -->
         <h1 class="text-center mb-4">Local Service Provider</h1>
         <!-- Provider Details -->
-        <div class="container my-4">
+        <div class="container my-4 oe_provider_details">
             <div class="row" itemscope="itemscope" itemtype="http://schema.org/Organization">
                 <div class="col-lg-3 col-md-4">
                     <div>
@@ -137,6 +153,11 @@
                     <div id="right_column">
                         <div t-out="provider.phone"></div>
                         <div t-out="provider.email"></div>
+                        <div>
+                            <button type="button" class="btn btn-primary mt-2 oe_book_appointment">
+                                <i class="fa fa-calendar"></i> Book Appointment
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -145,34 +166,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow rounded-3">
-                <t t-if="provider.image">
-                    <img t-att-src="'data:image/png;base64,%s' % provider.image" class="card-img-top" style="object-fit: cover; height: 220px;"/>
-                </t>
-                <div class="card-body">
-                    <h5 class="card-title"><t t-esc="provider.name"/></h5>
-                    <p class="text-muted small mb-1">
-                    <i class="fa fa-briefcase me-1"></i> <t t-esc="provider.category_id.name"/>
-                    </p>
-                    <p class="card-text"><t t-esc="provider.description[:120]"/>...</p>
-                    <a t-attf-href="/service/{{ provider.id }}" class="btn btn-sm btn-outline-primary me-2">
-                    View Profile
-                    </a>
-                    <a t-if="provider.phone" t-attf-href="tel:{{ provider.phone }}" class="btn btn-sm btn-outline-success me-1">
-                    <i class="fa fa-phone"></i>
-                    </a>
-                    <a t-if="provider.email" t-attf-href="mailto:{{ provider.email }}" class="btn btn-sm btn-outline-secondary">
-                    <i class="fa fa-envelope"></i>
-                    </a>
-                </div>
-                </div>
-            </div>
-        </div>
-
-        </div> -->
     </t>
 </template>
 </odoo>
