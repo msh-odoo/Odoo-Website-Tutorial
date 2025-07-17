@@ -16,7 +16,9 @@
     ],
     'assets': {
         'web.assets_frontend': [
-            'website_local_services/static/src/**/*',
+            'website_local_services/static/src/interactions/**/*',
+            'website_local_services/static/src/components/**/*',
+            'website_local_services/static/src/scss/**/*',
         ],
         'html_builder.assets': [
             'website_local_services/static/src/website_builder/**/*',

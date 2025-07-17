@@ -8,7 +8,7 @@ class ViewModeOption extends Plugin {
         builder_options: [
             {
                 template: "website_local_services.ViewModeOption",
-                selector: "div:has(#o_services_index_content)",
+                selector: "div.js_services:has(#o_services_index_content)",
                 editableOnly: false,
                 title: _t("Service Page"),
                 groups: ["website.group_website_designer"],
