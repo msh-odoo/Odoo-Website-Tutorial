@@ -28,4 +28,5 @@ class ServiceProvider(models.Model):
     service_id = fields.Many2one('service.service', string='Service', required=True)
     phone = fields.Char()
     email = fields.Char()
+    appointment_date = fields.Datetime(string='Appointment Date')
     profile_description = fields.Html(string='Service Provider Profile')

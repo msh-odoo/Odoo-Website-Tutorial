@@ -1,39 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <templates>
     <t t-name="website_local_services.AppointmentDialog">
-        <div role="dialog" class="modal d-block" id="oe_social_share_modal">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <header class="modal-header mb0" role="status">
-                        <h4 class="modal-title text-break">
-                            Book Appointment
-                        </h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </header>
-                    <main class="modal-body">
-                        <div>
-                            <form class="o_form">
-                                <div class="form-group">
-                                    <label for="appointment_date">Appointment Date</label>
-                                    <input type="datetime-local" id="appointment_date" name="appointment_date"
-                                        class="form-control"/>
-                                </div>
-                            </form>
-                        </div>
-                    </main>
-                    <footer class="modal-footer">
-                        <button class="btn btn-primary o-default-button"
-                            t-on-click="props.onSave">
-                            Save
-                        </button>
-                        <button class="btn btn-secondary"
-                            t-on-click="props.onClose">
-                            Close
-                        </button>
-                    </footer>
-                </div>
+        <Dialog size="'xl'" title.translate="Book Appointment">
+            <div>
+                <form class="o_form">
+                    <div class="form-group">
+                        <label for="appointment_date">Appointment Date</label>
+                        <input type="datetime-local" id="appointment_date" name="appointment_date"
+                            class="form-control"/>
+                    </div>
+                </form>
             </div>
-        </div>
+            <t t-set-slot="footer">
+                <button class="btn btn-primary o-default-button"
+                    t-on-click="props.onClickBook.bind(this)">
+                    Save
+                </button>
+                <button t-if="props.onClose" class="btn btn-secondary"
+                    t-on-click="props.onClose">
+                    Close
+                </button>
+            </t>
+        </Dialog>
     </t>
 
 </templates>

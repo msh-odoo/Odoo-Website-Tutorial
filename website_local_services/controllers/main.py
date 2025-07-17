@@ -34,6 +34,25 @@ class LocalServices(http.Controller):
             'search': search_query,
         })
 
+    @http.route(['/website_local_services/book_appointment'], type='jsonrpc', auth="public")
+    def book_appointment(self, **kwargs):
+        """
+        Handles the booking of an appointment with a service provider.
+        """
+        provider_id = kwargs.get('provider_id')
+        appointment_date = kwargs.get('appointment_date')
+
+        if not provider_id or not appointment_date:
+            return {'error': 'Missing provider ID or appointment date.'}
+
+        provider = request.env['service.provider'].sudo().browse(provider_id)
+        if not provider.exists():
+            return {'error': 'Provider not found.'}
+
+        # Update the provider's appointment date
+        provider.appointment_date = appointment_date
+
+        return {'success': True, 'message': 'Appointment booked successfully.'}
 
     @http.route(['/service/<model("service.service"):service>'], type='http', auth="public", website=True)
     def service_providers(self, service):

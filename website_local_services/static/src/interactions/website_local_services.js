@@ -3,6 +3,15 @@ import { registry } from "@web/core/registry";
 
 import { rpc } from "@web/core/network/rpc";
 import { _t } from "@web/core/l10n/translation";
+import {
+    formatDate,
+    formatDateTime,
+    parseDate,
+    parseDateTime,
+    serializeDate,
+    serializeDateTime,
+} from "@web/core/l10n/dates";
+const { DateTime } = luxon;
 
 import { AppointmentDialog } from "@website_local_services/components/appointment_dialog";
 
@@ -19,16 +28,22 @@ export class ProviderDetails extends Interaction {
      * @param {HTMLElement} currentTargetEl
      */
     async onBookAppointment(ev, currentTargetEl) {
-        debugger;
         this.services.dialog.add(AppointmentDialog, {
-            onSave: async () => {
+            onClickBook: async (ev) => {
+                const contentEl = ev.currentTarget.closest(".modal-content");
+                const dateVal = contentEl.querySelector("#appointment_date").value;
+                const dateValue = formatDateTime(DateTime.fromSeconds(parseInt(dateVal)));
                 await rpc("/website_local_services/book_appointment", {
-                    provider_id: currentTargetEl.dataset.providerId,
+                    appointment_date: dateValue,
                 }).then(() => {
                     this.services.notification.add(_t("Appointment booked successfully!"));
+                    this.services.dialog.closeAll();
                 }).catch((error) => {
                     this.services.notification.add(_t("Failed to book appointment: ") + error.message, { type: "danger" });
                 });
+            },
+            onClose: () => {
+                this.services.dialog.closeAll();
             },
         });
     }
