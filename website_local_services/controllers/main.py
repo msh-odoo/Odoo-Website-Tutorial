@@ -34,7 +34,7 @@ class LocalServices(http.Controller):
             'search': search_query,
         })
 
-    @http.route(['/website_local_services/book_appointment'], type='jsonrpc', auth="public")
+    @http.route(['/website_local_services/book_appointment'], type='jsonrpc', auth="user")
     def book_appointment(self, **kwargs):
         """
         Handles the booking of an appointment with a service provider.
@@ -54,7 +54,30 @@ class LocalServices(http.Controller):
 
         return {'success': True, 'message': 'Appointment booked successfully.'}
 
-    @http.route(['/service/<model("service.service"):service>'], type='http', auth="public", website=True)
+    @http.route(['/service/<model("service.service"):service>/add_provider'], type='http', auth="user", website=True)
+    def add_provider(self, service):
+        return request.render('website_local_services.add_provider', {
+            'service': service,
+        })
+
+    @http.route(['/service/<model("service.service"):service>/submit_provider'], type='http', auth="user", method=['POST'], website=True)
+    def submit_provider(self, service, **kwargs):
+        name = kwargs.get('name')
+        phone = kwargs.get('phone')
+        email = kwargs.get('email')
+        profile_description = kwargs.get('profile_description')
+        if not service.exists():
+            return request.redirect('/services')
+        provider = request.env['service.provider'].sudo().create({
+            'name': name,
+            'service_id': service.id,
+            'phone': phone,
+            'email': email,
+            'profile_description': profile_description,
+        })
+        return request.redirect('/service/%s' % service.id)
+
+    @http.route(['/service/<model("service.service"):service>'], type='http', auth="user", website=True)
     def service_providers(self, service):
         return request.render('website_local_services.service_providers', {
             'service': service,
