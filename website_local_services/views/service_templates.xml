@@ -43,15 +43,14 @@
                 <t t-set="search" t-value="original_search or search"/>
                 <t t-set="additional_classes" t-value="'mt-3'"/>
             </t>
-            <section id="o_services_index_content">
+            <section class="container py-4">
                 <t t-set="opt_service_list_view" t-value="is_view_active('website_local_services.opt_service_list_view')"/>
-                <!-- <t t-set="opt_service_list_view" t-value="True"/> -->
                 <t t-if="not opt_service_list_view">
                     <t t-set="colWidth" t-value="'px-2 col-sm-6 col-lg-4 col-xl-3'"/>
                 </t>
                 <!-- List-View Design, add <hr> after post -->
                 <div t-if="opt_service_list_view and not blog_post_last" class="col-12 mt-2 mb-5 px-2"><hr/></div>
-                <div class="container py-4">
+                <div id="o_services_index_content">
                     <div t-attf-class="row justify-content-center">
                         <div id="o_service_loop_container" t-attf-class="col #{'o_container_small mx-0' if opt_blog_list_view else ''}">
                             <t t-foreach="services" t-as="service">

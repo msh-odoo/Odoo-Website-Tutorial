@@ -6,7 +6,7 @@
         <BuilderRow label.translate="Layout">
             <BuilderSelect>
                 <BuilderSelectItem actionParam="{views: []}">Grid</BuilderSelectItem>
-                <BuilderSelectItem actionParam="{views: ['website_blog.opt_service_list_view']}">List</BuilderSelectItem>
+                <BuilderSelectItem actionParam="{views: ['website_local_services.opt_service_list_view']}">List</BuilderSelectItem>
             </BuilderSelect>
         </BuilderRow>
     </BuilderContext>
