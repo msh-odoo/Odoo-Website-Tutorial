@@ -1,15 +1,43 @@
 import { Component, xml, reactive, useState, useRef } from "@odoo/owl";
-// import { StackingComponent, useStackingComponentState } from "@website/stacking_component";
 import { Plugin } from "@html_editor/plugin";
-import { withSequence } from "@html_editor/utils/resource";
+import { formatsSpecs } from "@html_editor/utils/formatting";
+import { closestElement, descendants } from "@html_editor/utils/dom_traversal";
+import { isTextNode } from "@html_editor/utils/dom_info";
+import { nodeSize } from "@html_editor/utils/position";
 import { _t } from "@web/core/l10n/translation";
 import { registry } from "@web/core/registry";
+
+function getCurrentTextBlink(el) {
+    const blinkEl = el.closest(".o_text_blink");
+    if (!blinkEl) {
+        return;
+    }
+    return Array.from(blinkEl.classList)
+        .find((cls) => cls.startsWith("o_text_blink_"))
+        ?.replace("o_text_blink_", "");
+}
+
+formatsSpecs.blink = {
+    isFormatted: (node) => closestElement(node)?.classList.contains("o_text_blink"),
+    hasStyle: (node) => closestElement(node)?.classList.contains("o_text_blink"),
+    addStyle: (node, { blinkId, colorToRestore }) => {
+        node.classList.add("o_text_blink", `o_text_blink_${blinkId || 1}`);
+        if (colorToRestore && colorToRestore !== "currentColor") {
+            node.style.setProperty("--text-blink-color", colorToRestore);
+        }
+    },
+    removeStyle: (node) => {
+        removeClass(
+            node,
+            ...[...node.classList].filter((cls) => cls.startsWith("o_text_blink"))
+        );
+    },
+};
 
 class BlinkPlugin extends Plugin {
     static id = "blink";
     static dependencies = ["history", "selection", "split", "format"];
     resources = {
-        // toolbar_groups: [withSequence(50, { id: "websiteDecoration" })],
         toolbar_items: [
             {
                 id: "blink",
@@ -19,101 +47,73 @@ class BlinkPlugin extends Plugin {
                 props: {
                     blinkConfiguratorProps: {
                         applyBlink: this.applyBlink.bind(this),
-                        previewBlink: this.previewBlink.bind(this),
-                        revertBlink: this.revertBlink.bind(this),
-                        // applyBlinkStyle: this.applyHighlightStyle.bind(this),
-                        // previewBlinkStyle: this.previewHighlightStyle.bind(this),
-                        // revertBlinkStyle: this.revertHighlightStyle.bind(this),
                         getBlinkState: () => this.blinkState,
-                        // getUsedCustomColors: this.getUsedCustomColors.bind(this),
                         deleteBlink: this.deleteSelectedBlink.bind(this),
                     },
-                    onClick: this.completeBlinkSelection.bind(this),
+                    onClick: () => {
+                        this.applyBlink();
+                        this.completeBlinkSelection();
+                    },
                 },
             },
         ],
     };
 
     setup() {
-        this.previewableApplyBlink = this.dependencies.history.makePreviewableOperation(
-            this._applyBlink.bind(this)
-        );
-        // this.previewableApplyHighlightStyle = this.dependencies.history.makePreviewableOperation(
-        //     this._applyHighlightStyle.bind(this)
-        // );
         this.blinkState = reactive({
             blinkId: undefined,
             color: "",
-            // thickness: undefined,
         });
     }
 
-    updateSelectedHighlight() {
+    updateSelectedBlink() {
         const nodes = this.getSelectedBlinkNodes();
         const uniqueNodes = new Set(nodes);
         if (uniqueNodes.size === 0) {
-            this.highlightState.highlightId = undefined;
-            this.highlightState.color = "";
-            this.highlightState.thickness = undefined;
+            this.blinkStateState.highlightId = undefined;
+            this.blinkState.color = "";
             return;
         }
 
-        this.highlightState.highlightId =
+        this.blinkState.blinkId =
             uniqueNodes.size > 1 ? "multiple" : getCurrentTextBlink(nodes[0]);
-        if (this.highlightState.highlightId) {
+        if (this.blinkState.blinkId) {
             // If multiple highlights are selected, either show the common highlight properties
             // or nothing if none
             const style = nodes.map((node) =>
-                getComputedStyle(node).getPropertyValue("--text-highlight-color")
+                getComputedStyle(node).getPropertyValue("--text-blink-color")
             );
-            this.highlightState.color = style.every((v) => v === style[0]) ? style[0] : undefined;
-            const thickness = nodes.map((node) =>
-                getComputedStyle(node).getPropertyValue("--text-highlight-width")
-            );
-            this.highlightState.thickness = thickness.every((v) => v === thickness[0])
-                ? parseInt(thickness[0])
-                : "";
+            this.blinkState.color = style.every((v) => v === style[0]) ? style[0] : undefined;
         }
     }
 
-    _applyBlink(highlightId) {
-        // const highlightedNodes = this.getSelectedBlinkNodes();
-        // for (const node of new Set(highlightedNodes)) {
-        //     for (const svg of node.querySelectorAll(".o_text_highlight_svg")) {
-        //         svg.remove();
-        //     }
-        // }
+    _applyBlink(blinkId) {
+        if (!blinkId) {
+            blinkId = "1";
+        }
+        const blinkNodes = this.getSelectedBlinkNodes();
+        let colorToRestore;
+        if (blinkNodes.length > 0) {
+            const style = getComputedStyle(blinkNodes[0]);
+            colorToRestore = style.getPropertyValue("--text-highlight-color");
+        }
 
-        // let thicknessToRestore;
-        // let colorToRestore;
-        // if (highlightedNodes.length > 0) {
-        //     const style = getComputedStyle(highlightedNodes[0]);
-        //     colorToRestore = style.getPropertyValue("--text-highlight-color");
-        //     thicknessToRestore = style.getPropertyValue("--text-highlight-width");
-        // }
+        this.dependencies.format.formatSelection("blink", {
+            formatProps: { blinkId, colorToRestore },
+            applyStyle: true,
+        });
 
-        // this.dependencies.format.formatSelection("highlight", {
-        //     formatProps: { highlightId, colorToRestore, thicknessToRestore },
-        //     applyStyle: true,
-        // });
-
-        // this.updateSelectedHighlight();
+        this.updateSelectedBlink();
     }
 
     applyBlink(highlightId) {
-        // this.previewableApplyHighlight.commit(highlightId);
-    }
-    previewBlink(highlightId) {
-        // this.previewableApplyHighlight.preview(highlightId);
-    }
-    revertBlink() {
-        // this.previewableApplyHighlight.revert();
+        this._applyBlink();
     }
 
     getSelectedBlinkNodes() {
         return this.dependencies.selection
             .getTargetedNodes()
-            .map((n) => closestElement(n, ".o_text_highlight"))
+            .map((n) => closestElement(n, ".o_text_blink"))
             .filter(Boolean);
     }
     /**
@@ -125,19 +125,19 @@ class BlinkPlugin extends Plugin {
             .getTargetedNodes()
             .map(
                 (n) =>
-                    closestElement(n, ".o_text_highlight") ||
-                    n?.querySelector?.(".o_text_highlight")
+                    closestElement(n, ".o_text_blink") ||
+                    n?.querySelector?.(".o_text_blink")
             );
         let { startContainer, startOffset, endContainer, endOffset, direction } =
             this.dependencies.selection.getEditableSelection();
 
         if (targetedNodes.length > 0) {
-            if (targetedNodes[0]?.matches?.(".o_text_highlight")) {
+            if (targetedNodes[0]?.matches?.(".o_text_blink")) {
                 const firstTextNode = descendants(targetedNodes[0]).filter(isTextNode)[0];
                 startContainer = firstTextNode;
                 startOffset = 0;
             }
-            if (targetedNodes.at(-1)?.matches?.(".o_text_highlight")) {
+            if (targetedNodes.at(-1)?.matches?.(".o_text_blink")) {
                 const lastTextNode = descendants(targetedNodes.at(-1)).filter(isTextNode).at(-1);
                 endContainer = lastTextNode;
                 endOffset = nodeSize(endContainer);
@@ -157,14 +157,7 @@ class BlinkPlugin extends Plugin {
     }
 
     deleteSelectedBlink() {
-        const highlightedNodes = this.getSelectedBlinkNodes();
-        for (const node of new Set(highlightedNodes)) {
-            for (const svg of node.querySelectorAll(".o_text_highlight_svg")) {
-                svg.remove();
-            }
-        }
-
-        this.dependencies.format.formatSelection("highlight", {
+        this.dependencies.format.formatSelection("blink", {
             applyStyle: false,
         });
         this.updateSelectedBlink();
@@ -182,33 +175,16 @@ class BlinkToolbarButton extends Component {
         getSelection: Function,
     };
     static template = xml`
-        <button t-ref="root" t-attf-class="btn btn-light o-select-highlight" t-on-click="openHighlightConfigurator" t-att-title="props.title">
-            <i class="fa oi oi-text-effect oi-fw py-1"/>
+        <button t-ref="root" t-attf-class="btn btn-light o-select-blink" t-on-click="applyBlink" t-att-title="props.title">
+            <i class="fa fa-solid fa-eye"></i>
         </button>
     `;
 
     setup() {
         this.blinkState = useState(this.props.blinkConfiguratorProps.getBlinkState());
         this.root = useRef("root");
-        // this.componentStack = useStackingComponentState();
-        // this.componentStack.push(HighlightConfigurator, {
-        //     componentStack: this.componentStack,
-        //     ...this.props.blinkConfiguratorProps,
-        // });
-        // this.configuratorPopover = usePopover(StackingComponent, {
-        //     onClose: () => {
-        //         while (this.componentStack.stack.length > 1) {
-        //             this.componentStack.pop();
-        //         }
-        //     },
-        // });
     }
-    openBlinkConfigurator() {
+    applyBlink() {
         this.props.onClick();
-        this.configuratorPopover.open(this.root.el, {
-            stackState: this.componentStack,
-            style: "max-height: 300px; width: 262px",
-            class: "d-flex flex-column p-2",
-        });
     }
 }
