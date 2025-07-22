@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_service_service_user,access_service_service_user,model_service_service,,1,1,1,1
 access_service_provider_user,access_service_provider_user,model_service_provider,,1,1,1,1
+access_service_tags_user,access_service_tags_user,model_service_tag,,1,1,1,1

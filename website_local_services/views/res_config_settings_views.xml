@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.website.local.services</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <block id="website_info_settings" position="after">
+                <block title="Local Services" id="website_local_services">
+                    <setting
+                        id="local_services_setting"
+                        string="Local Services"
+                        help="Will show tags if enabled.">
+                        <field name="enabled_service_tags"/>
+                    </setting>
+                </block>
+            </block>
+        </field>
+    </record>
+</odoo>

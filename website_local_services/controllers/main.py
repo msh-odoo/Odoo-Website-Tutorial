@@ -1,3 +1,6 @@
+import json
+from werkzeug.exceptions import NotFound
+
 from odoo import http
 from odoo.http import request
 
@@ -12,9 +15,20 @@ class LocalServices(http.Controller):
         domain = []
         services = request.env['service.service'].sudo().search(domain)
 
+        # breakpoint()
         return request.render('website_local_services.services', {
             'services': services,
+            'opt_service_tags': request.env['ir.config_parameter'].sudo().get_param('website_local_services.enable_service_tags') and 'show' or 'hide',
         })
+
+    @http.route(['/website_local_services/config_service_tags'], type='jsonrpc', auth='user')
+    def config_service_tags(self, **kwargs):
+        enableServiceTags = kwargs.get("enable_service_tags")
+        if enableServiceTags == 'show':
+            enableServiceTags = True
+        else:
+            enableServiceTags = False
+        return request.env['ir.config_parameter'].set_param('website_local_services.enable_service_tags', enableServiceTags)
 
     @http.route(['/service/search'], type='http', auth="public", website=True)
     def search_services(self, **kwargs):

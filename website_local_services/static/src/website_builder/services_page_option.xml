@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
 
-<t t-name="website_local_services.ViewModeOption">
+<t t-name="website_local_services.ServicesPageOption">
     <BuilderContext action="'websiteConfig'">
         <BuilderRow label.translate="Layout">
             <BuilderSelect>
                 <BuilderSelectItem actionParam="{views: []}">Grid</BuilderSelectItem>
                 <BuilderSelectItem actionParam="{views: ['website_local_services.opt_service_list_view']}">List</BuilderSelectItem>
+            </BuilderSelect>
+        </BuilderRow>
+        <BuilderRow label.translate="Tags" preview="false">
+            <BuilderSelect action="'toggleTagsOptions'">
+                <BuilderSelectItem actionValue="'show'">Show Tags</BuilderSelectItem>
+                <BuilderSelectItem actionValue="'hide'">Hide Tags</BuilderSelectItem>
             </BuilderSelect>
         </BuilderRow>
     </BuilderContext>

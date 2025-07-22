@@ -162,7 +162,6 @@ class BlinkPlugin extends Plugin {
         });
         this.updateSelectedBlink();
     }
-
 }
 
 registry.category("website-plugins").add(BlinkPlugin.id, BlinkPlugin);

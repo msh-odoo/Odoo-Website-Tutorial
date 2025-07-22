@@ -36,6 +36,18 @@
     </nav>
 </template>
 
+<template id="service_tags" name="Service Tags">
+    <t t-if="service.tag_ids">
+        <div class="o_service_tags mt-2">
+            <t t-foreach="service.tag_ids" t-as="tag" t-key="tag.id">
+                <span class="badge bg-secondary me-1 mb-1">
+                    <a t-attf-href="/service/tag/#{slug(tag)}" class="text-decoration-none text-white" t-out="tag.name"></a>
+                </span>
+            </t>
+        </div>
+    </t>
+</template>
+
 <template id="services" name="Services">
     <t t-call="website.layout">
         <div id="wrap" class="js_services website_services">
@@ -50,7 +62,7 @@
                 </t>
                 <!-- List-View Design, add <hr> after post -->
                 <div t-if="opt_service_list_view and not blog_post_last" class="col-12 mt-2 mb-5 px-2"><hr/></div>
-                <div id="o_services_index_content">
+                <div id="o_services_index_content" t-att-data-tags-options="opt_service_tags == 'show' and 'show' or 'hide'">
                     <div t-attf-class="row justify-content-center">
                         <div id="o_service_loop_container" t-attf-class="col #{'o_container_small mx-0' if opt_blog_list_view else ''}">
                             <t t-foreach="services" t-as="service">
@@ -65,6 +77,7 @@
                                             <div>
                                                 <t t-call="website_local_services.service_heading"/>
                                             </div>
+                                            <t t-if="opt_service_tags == 'show'" t-call="website_local_services.service_tags"/>
                                             <!-- <div class="mt-3">
                                                 <a t-attf-href="/blog/#{slug(blog_post.blog_id)}/#{slug(blog_post)}" class="btn btn-primary">
                                                     Read more <i class="oi oi-chevron-right ms-2"/>

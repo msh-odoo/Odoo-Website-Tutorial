@@ -10,6 +10,7 @@
         'data/local_service_website_data.xml',
         'views/service_views.xml',
         'views/service_templates.xml',
+        'views/res_config_settings_views.xml',
     ],
     'demo': [
         'data/local_services_demo.xml',
