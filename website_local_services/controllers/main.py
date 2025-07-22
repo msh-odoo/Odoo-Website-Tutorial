@@ -15,7 +15,6 @@ class LocalServices(http.Controller):
         domain = []
         services = request.env['service.service'].sudo().search(domain)
 
-        # breakpoint()
         return request.render('website_local_services.services', {
             'services': services,
             'opt_service_tags': request.env['ir.config_parameter'].sudo().get_param('website_local_services.enable_service_tags') and 'show' or 'hide',

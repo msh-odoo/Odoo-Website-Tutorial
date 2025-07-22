@@ -67,11 +67,11 @@
                         <div id="o_service_loop_container" t-attf-class="col #{'o_container_small mx-0' if opt_blog_list_view else ''}">
                             <t t-foreach="services" t-as="service">
                                 <!-- Assign 'colWidth': 'col-12' is default for List-View and mobile -->
-                                <div t-attf-class="pb-4 col-12 #{colWidth}">
+                                <div t-attf-class="o_service_card pb-4 col-12 #{colWidth}">
                                     <article t-attf-class="o_service position-relative" name="service">
                                         <!-- List-View Design -->
                                         <t t-if="opt_service_list_view">
-                                            <div>
+                                            <div class="o_cover_image_card">
                                                 <t t-call="website_local_services.service_cover_image"/>
                                             </div>
                                             <div>
