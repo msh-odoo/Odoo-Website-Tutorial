@@ -50,12 +50,14 @@
 
 <template id="services" name="Services">
     <t t-call="website.layout">
-        <div id="wrap" class="js_services website_services">
+        <div id="wrap" class="js_services website_services oe_structure o_editable">
             <t t-call="website_local_services.service_nav">
                 <t t-set="search" t-value="original_search or search"/>
                 <t t-set="additional_classes" t-value="'mt-3'"/>
             </t>
-            <section class="container py-4">
+            <!-- <div class="oe_structure oe_empty" id="oe_structure_website_local_services_1"/> -->
+            <!-- <div class="oe_structure o_editable" id="oe_structure_website_local_services_1"> -->
+            <section t-ignore="True" class="container py-4">
                 <t t-set="opt_service_list_view" t-value="is_view_active('website_local_services.opt_service_list_view')"/>
                 <t t-if="not opt_service_list_view">
                     <t t-set="colWidth" t-value="'px-2 col-sm-6 col-lg-4 col-xl-3'"/>
@@ -102,6 +104,7 @@
                     </div>
                 </div>
             </section>
+            <!-- </div> -->
             <!-- Title -->
             <!-- <h1 class="text-center mb-4">Local Services</h1> -->
         </div>

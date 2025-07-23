@@ -36,6 +36,15 @@
             dataAttributeAction="'tooltipDisplay'"
             dataAttributeActionValue="'true'"/>
     </BuilderRow>
+    <!-- TODO: MSH: We can add option for target to open link in new or current tab to show attributeAction -->
+    <BuilderRow label.translate="Link">
+        <BuilderSelect
+            attributeAction="'target'"
+            applyTo="`a.o_wblog_post_cover_nocard`">
+            <BuilderSelectItem attributeActionValue="'_blank'">New Widnow</BuilderSelectItem>
+            <BuilderSelectItem attributeActionValue="'_self'">Current Window</BuilderSelectItem>
+        </BuilderSelect>
+    </BuilderRow>
 </t>
 
 </templates>

@@ -11,7 +11,6 @@ export class ImageTooltip extends Interaction {
     dynamicContent = {
         _root: {
             "t-att-title": () => {
-                debugger;
                 if (this.el.dataset.tooltipDisplay === "true") {
                     const imageEl = this.el.querySelector(".o_record_cover_image");
                     const backgroundImage = imageEl.style.backgroundImage;
