@@ -1,5 +1,5 @@
 import { BuilderAction } from "@html_builder/core/builder_action";
-import { BaseOptionComponent } from "@html_builder/core/utils";
+import { BaseOptionComponent, useDomState } from "@html_builder/core/utils";
 import { Plugin } from "@html_editor/plugin";
 import { rpc } from "@web/core/network/rpc";
 import { _t } from "@web/core/l10n/translation";
@@ -8,6 +8,21 @@ import { registry } from "@web/core/registry";
 export class ServiceCardOption extends BaseOptionComponent {
     static template = "website_local_services.ServiceCardOption";
     static props = {};
+}
+
+export class ServiceCardTooltipOption extends BaseOptionComponent {
+    static template = "website_local_services.ServiceCardTooltipOption";
+    static props = {};
+
+    setup() {
+        super.setup();
+        this.state = useDomState((cardEl)=> {
+            if (cardEl) {
+                cardEl.dispatchEvent(new CustomEvent("content_changed", { bubbles: true }));
+            }
+        });
+    }
+
 }
 
 class ServicesPageOption extends Plugin {
@@ -28,7 +43,14 @@ class ServicesPageOption extends Plugin {
                 name: "serviceCardOption",
                 editableOnly: false,
                 // title: _t("Service Page"),
-            }
+            },
+            {
+                OptionComponent: ServiceCardTooltipOption,
+                selector: "div.o_service_card",
+                name: "serviceCardTooltipOption",
+                editableOnly: false,
+                // title: _t("Service Page"),
+            },
         ],
         builder_actions: {
             ToggleTagsOptionsAction,

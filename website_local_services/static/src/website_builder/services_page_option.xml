@@ -30,4 +30,12 @@
     </BuilderRow>
 </t>
 
+<t t-name="website_local_services.ServiceCardTooltipOption">
+    <BuilderRow label.translate="Tooltip">
+        <BuilderCheckbox
+            dataAttributeAction="'tooltipDisplay'"
+            dataAttributeActionValue="'true'"/>
+    </BuilderRow>
+</t>
+
 </templates>

@@ -4,12 +4,7 @@ import { registry } from "@web/core/registry";
 import { rpc } from "@web/core/network/rpc";
 import { _t } from "@web/core/l10n/translation";
 import {
-    formatDate,
     formatDateTime,
-    parseDate,
-    parseDateTime,
-    serializeDate,
-    serializeDateTime,
 } from "@web/core/l10n/dates";
 const { DateTime } = luxon;
 
