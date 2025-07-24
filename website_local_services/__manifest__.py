@@ -8,6 +8,8 @@
     'data': [
         'security/ir.model.access.csv',
         'data/local_service_website_data.xml',
+        'views/snippets/s_services.xml',
+        'views/snippets/snippets.xml',
         'views/service_views.xml',
         'views/service_templates.xml',
         'views/res_config_settings_views.xml',

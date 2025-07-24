@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+<template id="snippets" inherit_id="website.snippets">
+    <xpath expr="//t[@id='installed_snippets_hook']" position="after">
+        <t snippet-group="services" t-snippet="website.s_snippet_group" string="Services"
+            t-thumbnail="/website/static/src/img/snippets_thumbs/s_event_upcoming_snippet.svg"/>
+    </xpath>
+    <xpath expr="//snippets[@id='snippet_content']" position="inside">
+        <t t-snippet="website_local_services.s_services" string="Services" group="services"/>
+    </xpath>
+</template>
+
+<template id="snippet_options" inherit_id="website.snippet_options">
+    <xpath expr="//*[@t-set='so_content_addition_selector']" position="inside" t-translation="off">,.s_services</xpath>
+</template>
+
+</odoo>
