@@ -50,7 +50,7 @@
 
 <template id="services" name="Services">
     <t t-call="website.layout">
-        <div id="wrap" class="js_services website_services oe_structure o_editable">
+        <div id="wrap" class="js_services website_services">
             <t t-call="website_local_services.service_nav">
                 <t t-set="search" t-value="original_search or search"/>
                 <t t-set="additional_classes" t-value="'mt-3'"/>
@@ -104,6 +104,9 @@
                     </div>
                 </div>
             </section>
+            <div class="oe_structure oe_empty oe_structure_not_nearest"
+                id="oe_structure_services_footer"
+                t-att-data-editor-sub-message="'Drop Content Here'"/>
             <!-- </div> -->
             <!-- Title -->
             <!-- <h1 class="text-center mb-4">Local Services</h1> -->
