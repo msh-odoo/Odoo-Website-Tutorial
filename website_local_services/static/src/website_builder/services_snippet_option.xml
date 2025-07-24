@@ -4,9 +4,7 @@
 <t t-name="website_local_services.ServiceCardOption">
     <BuilderRow label.translate="Style">
         <BuilderButton icon="'fa-square'" classAction="'rounded'" title.translate="Shape: Rounded"/>
-        <!-- <BuilderButton icon="'fa-circle-o'" classAction="'rounded-circle'" title.translate="Shape: Circle"/> -->
         <BuilderButton icon="'fa-sun-o'" classAction="'shadow'" title.translate="Shadow"/>
-        <BuilderButton icon="'fa-picture-o'" classAction="'img-thumbnail'" title.translate="Shape: Thumbnail"/>
     </BuilderRow>
     <BuilderRow label.translate="Padding">
         <BuilderNumberInput styleAction="'padding'" unit="'px'" composable="true"/>
@@ -19,7 +17,6 @@
             dataAttributeAction="'tooltipDisplay'"
             dataAttributeActionValue="'true'"/>
     </BuilderRow>
-    <!-- TODO: MSH: We can add option for target to open link in new or current tab to show attributeAction -->
     <BuilderRow label.translate="Link">
         <BuilderSelect
             attributeAction="'target'"
