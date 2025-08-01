@@ -22,19 +22,23 @@ export class ProviderDetails extends Interaction {
      * @param {MouseEvent|KeyboardEvent} ev
      * @param {HTMLElement} currentTargetEl
      */
-    async onBookAppointment(ev, currentTargetEl) {
+    onBookAppointment(ev, currentTargetEl) {
         this.services.dialog.add(AppointmentDialog, {
-            onClickBook: async (ev) => {
+            onClickBook: (ev) => {
                 const contentEl = ev.currentTarget.closest(".modal-content");
                 const dateVal = contentEl.querySelector("#appointment_date").value;
                 const dateValue = formatDateTime(DateTime.fromSeconds(parseInt(dateVal)));
-                await rpc("/website_local_services/book_appointment", {
-                    appointment_date: dateValue,
-                }).then(() => {
-                    this.services.notification.add(_t("Appointment booked successfully!"));
-                    this.services.dialog.closeAll();
-                }).catch((error) => {
-                    this.services.notification.add(_t("Failed to book appointment: ") + error.message, { type: "danger" });
+                new Promise((resolve, reject) => {
+                    rpc("/website_local_services/book_appointment", {
+                        appointment_date: dateValue,
+                    }).then(() => {
+                        this.services.notification.add(_t("Appointment booked successfully!"));
+                        this.services.dialog.closeAll();
+                        resolve();
+                    }).catch((error) => {
+                        this.services.notification.add(_t("Failed to book appointment: ") + error.message, { type: "danger" });
+                        reject(error);
+                    });
                 });
             },
             onClose: () => {

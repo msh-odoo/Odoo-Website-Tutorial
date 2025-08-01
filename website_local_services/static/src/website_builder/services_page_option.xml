@@ -2,9 +2,12 @@
 <templates xml:space="preserve">
 
 <t t-name="website_local_services.ServicesPageOption">
-    <BuilderContext action="'websiteConfig'">
+    <!-- <BuilderContext> -->
+        <!-- <BuilderRow label.translate="List View">
+            <BuilderCheckbox action="'websiteConfig'" actionParam="{views: ['website_local_services.opt_service_list_view']}"/>
+        </BuilderRow> -->
         <BuilderRow label.translate="Layout">
-            <BuilderSelect>
+            <BuilderSelect action="'websiteConfig'">
                 <BuilderSelectItem actionParam="{views: []}">Grid</BuilderSelectItem>
                 <BuilderSelectItem actionParam="{views: ['website_local_services.opt_service_list_view']}">List</BuilderSelectItem>
             </BuilderSelect>
@@ -15,7 +18,7 @@
                 <BuilderSelectItem actionValue="'hide'">Hide Tags</BuilderSelectItem>
             </BuilderSelect>
         </BuilderRow>
-    </BuilderContext>
+    <!-- </BuilderContext> -->
 </t>
 
 </templates>

@@ -19,7 +19,7 @@
 <template id="service_heading">
     <a t-attf-href="/service/#{slug(service)}"
        t-field="service.name"
-       t-attf-class="d-block text-reset text-decoration-none o_blog_post_title my-0 #{'h3' if opt_service_list_view else 'h6'}">
+       t-attf-class="card-title d-block text-reset text-decoration-none o_blog_post_title my-0 #{'h3' if opt_service_list_view else 'h6'}">
        Untitled Service
    </a>
 </template>
@@ -50,54 +50,39 @@
 
 <template id="services" name="Services">
     <t t-call="website.layout">
+        <t t-set="opt_service_list_view" t-value="is_view_active('website_local_services.opt_service_list_view')"/>
         <div id="wrap" class="js_services website_services">
             <t t-call="website_local_services.service_nav">
                 <t t-set="search" t-value="original_search or search"/>
                 <t t-set="additional_classes" t-value="'mt-3'"/>
             </t>
-            <!-- <div class="oe_structure oe_empty" id="oe_structure_website_local_services_1"/> -->
-            <!-- <div class="oe_structure o_editable" id="oe_structure_website_local_services_1"> -->
-            <section t-ignore="True" class="container py-4">
-                <t t-set="opt_service_list_view" t-value="is_view_active('website_local_services.opt_service_list_view')"/>
+            <section class="container py-4">
+                <!-- Grid-View/List View Design decided based on option -->
+                <t t-set="colWidth" t-value="'px-2 col-sm-12 col-lg-12 col-xl-12'"/>
                 <t t-if="not opt_service_list_view">
                     <t t-set="colWidth" t-value="'px-2 col-sm-6 col-lg-4 col-xl-3'"/>
                 </t>
                 <!-- List-View Design, add <hr> after post -->
                 <div t-if="opt_service_list_view and not blog_post_last" class="col-12 mt-2 mb-5 px-2"><hr/></div>
-                <div id="o_services_index_content" t-att-data-tags-options="opt_service_tags == 'show' and 'show' or 'hide'">
-                    <div t-attf-class="row justify-content-center">
-                        <div id="o_service_loop_container" t-attf-class="col #{'o_container_small mx-0' if opt_blog_list_view else ''}">
+                <div id="o_services_index_content"
+                    t-attf-class="#{opt_service_list_view} and 'o_services_list' or 'o_services_grid'"
+                    t-att-data-tags-options="opt_service_tags == 'show' and 'show' or 'hide'">
+                    <div t-attf-class="justify-content-center">
+                        <div id="o_service_loop_container" t-attf-class="row #{'o_container_small mx-0' if opt_blog_list_view else ''}">
                             <t t-foreach="services" t-as="service">
                                 <!-- Assign 'colWidth': 'col-12' is default for List-View and mobile -->
-                                <div t-attf-class="o_service_card pb-4 col-12 #{colWidth}">
-                                    <article t-attf-class="o_service position-relative" name="service">
-                                        <!-- List-View Design -->
-                                        <t t-if="opt_service_list_view">
-                                            <div class="o_cover_image_card">
+                                <div t-att-class="colWidth">
+                                    <div class="o_service_card card pb-4">
+                                        <article t-attf-class="o_service position-relative" name="service">
+                                            <div class="card-img-top o_cover_image_card">
                                                 <t t-call="website_local_services.service_cover_image"/>
                                             </div>
-                                            <div>
+                                            <div class="card-body">
                                                 <t t-call="website_local_services.service_heading"/>
+                                                <t t-if="opt_service_tags == 'show'" t-call="website_local_services.service_tags"/>
                                             </div>
-                                            <t t-if="opt_service_tags == 'show'" t-call="website_local_services.service_tags"/>
-                                            <!-- <div class="mt-3">
-                                                <a t-attf-href="/blog/#{slug(blog_post.blog_id)}/#{slug(blog_post)}" class="btn btn-primary">
-                                                    Read more <i class="oi oi-chevron-right ms-2"/>
-                                                </a>
-                                            </div> -->
-                                        </t>
-                                        <!-- Grid-View Design -->
-                                        <t t-if="not opt_service_list_view">
-                                            <div>
-                                                <t t-call="website_local_services.service_cover_image"/>
-                                            </div>
-                                            <div>
-                                                <t t-call="website_local_services.service_heading"/>
-                                            </div>
-                                        </t>
-                                        <!-- Add 'unpublished' badge -->
-                                        <span t-if="not service.website_published" class="bg-danger small py-1 px-2 position-absolute o_not_editable" style="top:0; right:0">unpublished</span>
-                                    </article>
+                                        </article>
+                                    </div>
                                 </div>
                             </t>
                         </div>
@@ -107,14 +92,11 @@
             <div class="oe_structure oe_empty oe_structure_not_nearest"
                 id="oe_structure_services_footer"
                 t-att-data-editor-sub-message="'Drop Content Here'"/>
-            <!-- </div> -->
-            <!-- Title -->
-            <!-- <h1 class="text-center mb-4">Local Services</h1> -->
         </div>
     </t>
 </template>
 
-<template id="opt_service_list_view" inherit_id="website_local_services.services" active="True" name="'Cards' Design"/>
+<template id="opt_service_list_view" inherit_id="website_local_services.services" active="False" name="'Cards' Design"/>
 
 <template id="service_providers" name="Service Providers Page">
     <t t-call="website.layout">
@@ -124,11 +106,11 @@
                     <t t-foreach="providers" t-as="provider">
                         <div data-name="Card" class="col-6 col-lg-2">
                             <div class="s_card card o_cc o_cc1 o_colored_level o_card_img_top" data-name="Card">
-                                <figure class="o_card_img_wrapper ratio mb-0 ratio-4x3">
+                                <div class="card-img-top o_cover_image_card">
                                     <a aria-label="Link to product" t-attf-href="/service/{{ provider.id }}">
-                                        <img t-attf-src="/web/image/service.provider/{{ provider.id }}/image_1920/80x80" style="padding: 0px; margin: 0px; height: auto; width: 80px;"/>
+                                        <img t-attf-src="/web/image/service.provider/{{ provider.id }}/image_1920/240x240"/>
                                     </a>
-                                </figure>
+                                </div>
                                 <div class="card-body">
                                     <h3 class="card-title h5-fs" style="text-align: center;">
                                         <span class="base-fs">

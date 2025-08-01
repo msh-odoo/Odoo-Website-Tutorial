@@ -3,6 +3,27 @@
     margin-bottom: 16px;
 }
 
+#o_service_loop_container {
+    display: flex;
+    gap: 16px; /* Space between cards */
+}
+
+.card {
+    flex: 1; /* Ensures all cards take equal width */
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch; /* Ensures equal height */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.card-body {
+    flex-grow: 1; /* Ensures content stretches to fill the card */
+}
+
 .o_record_cover_container {
     box-shadow: inset 0 0 0 1px rgba(white, 0.3);
 
