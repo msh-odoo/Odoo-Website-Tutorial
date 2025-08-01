@@ -22,6 +22,7 @@ class ServicesSnippetOption extends Plugin {
                 // title: _t("Service Page"),
             },
         ],
+        so_content_addition_selector: [".s_services"],
     };
 }
 

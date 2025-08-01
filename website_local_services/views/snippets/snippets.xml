@@ -11,8 +11,8 @@
     </xpath>
 </template>
 
-<template id="snippet_options" inherit_id="website.snippet_options">
+<!-- <template id="snippet_options" inherit_id="website.snippet_options">
     <xpath expr="//*[@t-set='so_content_addition_selector']" position="inside" t-translation="off">,.s_services</xpath>
-</template>
+</template> -->
 
 </odoo>
