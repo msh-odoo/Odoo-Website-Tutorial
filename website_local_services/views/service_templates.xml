@@ -165,7 +165,7 @@
 <template id="service_provider_detail" name="Service Providers Page">
     <t t-call="website.layout">
         <!-- Title -->
-        <h1 class="text-center mb-4">Local Service Provider</h1>
+        <!-- <h1 class="text-center mb-4">Local Service Provider</h1> -->
         <!-- Provider Details -->
         <div class="container my-4 oe_provider_details">
             <div class="row" itemscope="itemscope">

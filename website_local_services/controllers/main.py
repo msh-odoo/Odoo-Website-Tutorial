@@ -11,7 +11,6 @@ class LocalServices(http.Controller):
         """
         Renders the services page.
         """
-        # domain = [('is_published', '=', True)]
         domain = []
         services = request.env['service.service'].sudo().search(domain)
 
