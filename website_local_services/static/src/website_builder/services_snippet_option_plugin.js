@@ -1,29 +1,30 @@
 import { Plugin } from "@html_editor/plugin";
-import { _t } from "@web/core/l10n/translation";
+import { BuilderAction } from "@html_builder/core/builder_action";
 import { registry } from "@web/core/registry";
-import { ServiceCardOption, ServiceCardTooltipOption } from "./services_snippet_option";
 
-class ServicesSnippetOption extends Plugin {
-    static id = "ServicesSnippetOption";
+
+class ServicesSnippetOptionPlugin extends Plugin {
+    static id = "serviceCardDynamicOption";
     resources = {
-        builder_options: [
-            {
-                OptionComponent: ServiceCardOption,
-                selector: ".s_services .o_carousel_service_card",
-                name: "serviceCardOption",
-                editableOnly: false,
-                // title: _t("Service Page"),
-            },
-            {
-                OptionComponent: ServiceCardTooltipOption,
-                selector: ".s_services .o_carousel_service_card",
-                name: "serviceCardTooltipOption",
-                editableOnly: false,
-                // title: _t("Service Page"),
-            },
-        ],
+        builder_actions: {
+            NumberOfCardAction,
+        },
         so_content_addition_selector: [".s_services"],
     };
 }
 
-registry.category("website-plugins").add(ServicesSnippetOption.id, ServicesSnippetOption);
+class NumberOfCardAction extends BuilderAction {
+    static id = "numberOfCardAction";
+    getValue({ editingElement }) {
+        debugger;
+        const dynamicContent = editingElement.querySelector(".o_dynamic_content");
+        return dynamicContent.dataset.numberOfElements || "4";
+    }
+    async apply({ editingElement, actionValue }) {
+        debugger;
+        const dynamicContent = editingElement.querySelector(".o_dynamic_content");
+        dynamicContent.dataset.numberOfElements = actionValue;
+    }
+}
+
+registry.category("website-plugins").add(ServicesSnippetOptionPlugin.id, ServicesSnippetOptionPlugin);

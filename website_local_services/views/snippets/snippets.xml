@@ -2,12 +2,14 @@
 <odoo>
 
 <template id="snippets" inherit_id="website.snippets">
-    <xpath expr="//t[@id='installed_snippets_hook']" position="after">
+    <xpath expr="//snippets[@id='snippet_groups']" position="inside">
         <t snippet-group="services" t-snippet="website.s_snippet_group" string="Services"
-            t-thumbnail="/website/static/src/img/snippets_thumbs/s_event_upcoming_snippet.svg"/>
+            t-thumbnail="/website_local_services/static/src/img/snippets_thumbs/s_event_upcoming_snippet.svg"/>
     </xpath>
     <xpath expr="//snippets[@id='snippet_content']" position="inside">
-        <t t-snippet="website_local_services.s_services" string="Services" group="services"/>
+        <t t-snippet="website_local_services.s_services"
+            string="Services"
+            t-thumbnail="/website_local_services/static/src/img/snippets_thumbs/s_event_upcoming_snippet.svg"/>
     </xpath>
 </template>
 

@@ -1,11 +1,9 @@
-import { BaseOptionComponent, useDomState } from "@html_builder/core/utils";
-
-export class ServiceCardOption extends BaseOptionComponent {
-    static template = "website_local_services.ServiceCardOption";
-    static props = {};
-}
+import { BaseOptionComponent } from "@html_builder/core/base_option_component";
+import { useDomState } from "@html_builder/core/utils";
+import { registry } from "@web/core/registry";
 
 export class ServiceCardTooltipOption extends BaseOptionComponent {
+    static id = "service_card_tooltip";
     static template = "website_local_services.ServiceCardTooltipOption";
     static props = {};
 
@@ -18,3 +16,5 @@ export class ServiceCardTooltipOption extends BaseOptionComponent {
         });
     }
 }
+
+registry.category("website-options").add(ServiceCardTooltipOption.id, ServiceCardTooltipOption);

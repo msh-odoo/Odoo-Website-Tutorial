@@ -5,13 +5,13 @@
     <section>
         <div class="s_services o_services o_service_card pt56 pb56" data-object="service.service">
             <div class="carousel slide s_dialog_preview">
-                <div class="carousel-inner row w-100 mx-auto">
+                <div class="o_dynamic_content carousel-inner row w-100 mx-auto">
                     <div role="option" class="carousel-item active" style="min-height: 357.875px;">
                         <div class="row">
                             <div class="o_carousel_service_card_parent d-flex flex-grow-0 flex-shrink-0 col-3">
                                 <div class="o_carousel_service_card bg-transparent w-100 card border-0">
                                     <a class="o_carousel_service_img_link o_dynamic_product_hovered stretched-link" href="#">
-                                        <div class="overflow-hidden rounded">
+                                        <div class="overflow-hidden rounded o_not_editable">
                                             <img class="card-img-top o_img_product_square o_img_product_cover h-auto" loading="lazy" src="/website_local_services/static/src/img/doctor1.jpg"/>
                                         </div>
                                     </a>
@@ -30,7 +30,7 @@
                             <div class="o_carousel_service_card_parent d-flex flex-grow-0 flex-shrink-0 col-3">
                                 <div class="o_carousel_service_card bg-transparent w-100 card border-0">
                                     <a class="o_carousel_service_img_link o_dynamic_product_hovered stretched-link" href="#">
-                                        <div class="overflow-hidden rounded">
+                                        <div class="overflow-hidden rounded o_not_editable">
                                             <img class="card-img-top o_img_product_square o_img_product_cover h-auto" loading="lazy" src="/website_local_services/static/src/img/plumber1.jpg" alt="Warranty (2 year)"/>
                                         </div>
                                     </a>
@@ -49,7 +49,7 @@
                             <div class="o_carousel_service_card_parent d-flex flex-grow-0 flex-shrink-0 col-3">
                                 <div class="o_carousel_service_card bg-transparent w-100 card border-0">
                                     <a class="o_carousel_service_img_link o_dynamic_product_hovered stretched-link" href="#">
-                                        <div class="overflow-hidden rounded">
+                                        <div class="overflow-hidden rounded o_not_editable">
                                             <img class="card-img-top o_img_product_square o_img_product_cover h-auto" loading="lazy" src="/website_local_services/static/src/img/electrician1.jpg" alt="Warranty (2 year)"/>
                                         </div>
                                     </a>
@@ -68,7 +68,7 @@
                             <div class="o_carousel_service_card_parent d-flex flex-grow-0 flex-shrink-0 col-3">
                                 <div class="o_carousel_service_card bg-transparent w-100 card border-0">
                                     <a class="o_carousel_service_img_link o_dynamic_product_hovered stretched-link" href="#">
-                                        <div class="overflow-hidden rounded">
+                                        <div class="overflow-hidden rounded o_not_editable">
                                             <img class="card-img-top o_img_product_square o_img_product_cover h-auto" loading="lazy" src="/website_local_services/static/src/img/tutor1.jpg" alt="Warranty (2 year)"/>
                                         </div>
                                     </a>

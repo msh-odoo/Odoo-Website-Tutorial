@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
 
+<t t-inherit="website.BuilderOptions" t-inherit-mode="extension">
+    <xpath expr="//t[@id='snippet_specific_options']" position="after">
+        <service_card_option
+            template="website_local_services.ServiceCardOption"
+            selector=".s_services .o_carousel_service_card"
+            editableOnly="false"/>
+        <service_card_dynamic_option
+            template="website_local_services.ServiceCardDynamicOption"
+            selector=".s_services"
+            editableOnly="false"/>
+        <service_card_tooltip
+            selector=".s_services .o_carousel_service_card"
+            editableOnly="false"/>
+    </xpath>
+</t>
+
 <t t-name="website_local_services.ServiceCardOption">
     <BuilderRow label.translate="Style">
         <BuilderButton icon="'fa-square'" classAction="'rounded'" title.translate="Shape: Rounded"/>
@@ -8,6 +24,15 @@
     </BuilderRow>
     <BuilderRow label.translate="Padding">
         <BuilderNumberInput styleAction="'padding'" unit="'px'" composable="true"/>
+    </BuilderRow>
+</t>
+
+<t t-name="website_local_services.ServiceCardDynamicOption">
+    <BuilderRow label.translate="Template">
+        <BuilderSelect action="'numberOfCardAction'" actionParam="'dynamicContent'" preview="false">
+            <BuilderSelectItem actionValue="2">2 Tiles</BuilderSelectItem>
+            <BuilderSelectItem actionValue="4">4 Tiles</BuilderSelectItem>
+        </BuilderSelect>
     </BuilderRow>
 </t>
 
