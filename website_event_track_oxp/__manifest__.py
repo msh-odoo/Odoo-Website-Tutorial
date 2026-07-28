@@ -33,25 +33,20 @@ This module is intended for Odoo Experience demonstrations.
         "portal",
     ],
     "data": [
-        "security/ir.model.access.csv",
-
-        "data/website_menu.xml",
-
-        "views/event_track_templates.xml",
-        "views/event_track_portal_templates.xml",
+        "data/website_event_track_oxp_data.xml",
+        "views/event_track_oxp_templates.xml",
+        "views/event_track_oxp_portal_templates.xml",
     ],
     "assets": {
         "web.assets_frontend": [
-            "website_event_track_oxp/static/src/scss/event_track.scss",
+            # "website_event_track_oxp/static/src/scss/event_track.scss",
 
-            "website_event_track_oxp/static/src/js/favorite.js",
-            "website_event_track_oxp/static/src/js/search.js",
-            "website_event_track_oxp/static/src/js/register.js",
+            "website_event_track_oxp/static/src/interactions/wishlist.js",
         ],
     },
-    "demo": [
-        "demo/event_track_demo.xml",
-    ],
+    # "demo": [
+    #     "demo/event_track_demo.xml",
+    # ],
     "application": False,
     "installable": True,
 }
