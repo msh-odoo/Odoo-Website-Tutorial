@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- ========================================================== -->
+    <!-- Track List                                                 -->
+    <!-- ========================================================== -->
+
+    <template id="track_list" name="OXP Tracks">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure">
+                <section class="container py-5">
+                    <div class="row mb-4">
+                        <div class="col-lg-8">
+                            <h1>OXP Talks</h1>
+                            <p class="text-muted">
+                                Browse all Odoo Experience talks.
+                            </p>
+                        </div>
+                        <div class="col-lg-4">
+                            <form
+                                action="/oxp/tracks"
+                                method="get"
+                                class="d-flex"
+                            >
+                                <input
+                                    type="search"
+                                    name="search"
+                                    t-att-value="search"
+                                    class="form-control"
+                                    placeholder="Search talks..."
+                                />
+                                <button
+                                    type="submit"
+                                    class="btn btn-primary ms-2"
+                                >
+                                    Search
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <t t-foreach="tracks" t-as="track">
+                            <div class="col-lg-4 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <img
+                                        t-if="track.image"
+                                        t-att-src="'/web/image/event.track/%s/image' % track.id"
+                                        class="card-img-top"
+                                    />
+                                    <div class="card-body">
+                                        <h5>
+                                            <a t-att-href="'/oxp/tracks/%s' % track.id">
+                                                <t t-out="track.name"/>
+                                            </a>
+                                        </h5>
+                                        <p
+                                            class="text-muted"
+                                            t-field="track.description"
+                                        />
+                                        <div class="mt-3">
+                                            <span
+                                                t-foreach="track.tag_ids"
+                                                t-as="tag"
+                                                class="badge text-bg-secondary me-1"
+                                            >
+                                                <t t-out="tag.name"/>
+                                            </span>
+                                        </div>
+                                        <button
+                                            class="btn btn-outline-danger o_wetrack_wishlist"
+                                            t-att-data-track-id="track.id">
+                                            <i class="fa fa-heart"/>
+                                            Wishlist
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                    <t t-call="website.pager"/>
+                </section>
+            </div>
+        </t>
+    </template>
+
+    <!-- ========================================================== -->
+    <!-- Track Detail                                               -->
+    <!-- ========================================================== -->
+
+    <template id="track_detail" name="OXP Track Detail">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure">
+                <section class="container py-5">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h1 t-field="track.name"/>
+                            <div
+                                class="mt-4"
+                                t-field="track.description"
+                            />
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5>Information</h5>
+                                    <ul class="list-unstyled">
+                                        <li t-if="track.event_id">
+                                            <strong>Event</strong><br/>
+                                            <span t-field="track.event_id"/>
+                                        </li>
+                                        <li
+                                            class="mt-3"
+                                            t-if="track.location_id"
+                                        >
+                                            <strong>Location</strong><br/>
+                                            <span t-field="track.location_id"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-5"/>
+                    <h3>Related Talks</h3>
+                    <div class="row">
+                        <t
+                            t-foreach="related_tracks"
+                            t-as="related"
+                        >
+                            <div class="col-md-3">
+                                <a
+                                    t-att-href="'/oxp/tracks/%s' % related.id"
+                                    class="text-decoration-none"
+                                >
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h6>
+                                                <t t-out="related.name"/>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </t>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+
+</odoo>

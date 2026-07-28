@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- ===================================================== -->
+    <!-- Website Menu                                           -->
+    <!-- ===================================================== -->
+
+    <record id="website_menu_event_tracks_oxp" model="website.menu">
+        <field name="name">OXP Talks</field>
+        <field name="url">/oxp/tracks</field>
+        <field name="sequence">40</field>
+        <field name="parent_id" ref="website.main_menu"/>
+    </record>
+
+</odoo>

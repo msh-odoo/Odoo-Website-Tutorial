@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- ========================================================= -->
+    <!-- Portal Home Entry                                         -->
+    <!-- ========================================================= -->
+
+    <template
+        id="portal_my_home_tracks"
+        inherit_id="portal.portal_my_home"
+        priority="30"
+    >
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon"
+                   t-value="'/website_event_track_oxp/static/src/img/talk.svg'"/>
+                <t t-set="title">
+                    My Talks
+                </t>
+                <t t-set="url"
+                   t-value="'/my/tracks'"/>
+                <t t-set="text">
+                    Browse all published talks
+                </t>
+                <t t-set="placeholder_count"
+                   t-value="'track_count'"/>
+            </t>
+        </xpath>
+    </template>
+
+
+    <!-- ========================================================= -->
+    <!-- Portal Breadcrumb                                         -->
+    <!-- ========================================================= -->
+
+    <template
+        id="portal_my_tracks_breadcrumb"
+        inherit_id="portal.portal_breadcrumbs"
+    >
+        <xpath
+            expr="//ol[hasclass('o_portal_submenu')]"
+            position="inside"
+        >
+            <li
+                t-if="page_name == 'track' and not track"
+                class="breadcrumb-item active"
+            >
+                My Talks
+            </li>
+            <t t-if="track">
+                <li class="breadcrumb-item">
+                    <a href="/my/tracks">
+                        My Talks
+                    </a>
+                </li>
+                <li
+                    class="breadcrumb-item active"
+                    t-field="track.name"
+                />
+            </t>
+        </xpath>
+    </template>
+
+
+    <!-- ========================================================= -->
+    <!-- My Talks                                                  -->
+    <!-- ========================================================= -->
+
+    <template
+        id="portal_my_tracks"
+        name="Portal My Talks"
+    >
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <div class="container">
+                <h2 class="mb-4">
+                    My Talks
+                </h2>
+                <form
+                    action="/my/tracks"
+                    method="get"
+                    class="row mb-4"
+                >
+                    <div class="col-md-8">
+                        <input
+                            class="form-control"
+                            type="search"
+                            name="search"
+                            placeholder="Search talks..."
+                            t-att-value="search"
+                        />
+                    </div>
+                    <div class="col-md-2">
+                        <select
+                            class="form-select"
+                            name="sortby"
+                        >
+                            <t
+                                t-foreach="sortings.items()"
+                                t-as="sorting"
+                            >
+                                <option
+                                    t-att-value="sorting[0]"
+                                    t-att-selected="sorting[0] == sortby"
+                                >
+                                    <t t-out="sorting[1]['label']"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button
+                            class="btn btn-primary w-100"
+                            type="submit"
+                        >
+                            Apply
+                        </button>
+                    </div>
+                </form>
+
+                <t t-if="tracks">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Event</th>
+                                <th/>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                t-foreach="tracks"
+                                t-as="track"
+                            >
+                                <td>
+                                    <span t-field="track.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="track.event_id"/>
+                                </td>
+                                <td class="text-end">
+                                    <a
+                                        class="btn btn-sm btn-outline-primary"
+                                        t-att-href="'/my/tracks/%s' % track.id"
+                                    >
+                                        View
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <t t-call="website.pager"/>
+                </t>
+                <div
+                    t-else=""
+                    class="alert alert-info"
+                >
+                    No talks found.
+                </div>
+            </div>
+        </t>
+    </template>
+
+
+    <!-- ========================================================= -->
+    <!-- Portal Track Detail                                       -->
+    <!-- ========================================================= -->
+
+    <template
+        id="portal_track_detail"
+        name="Portal Track Detail"
+    >
+        <t t-call="portal.portal_layout">
+            <div class="container">
+                <h2 t-field="track.name"/>
+                <div
+                    class="mt-4"
+                    t-field="track.description"
+                />
+                <hr/>
+                <h5>
+                    Event
+                </h5>
+                <p t-field="track.event_id"/>
+                <t t-if="track.location_id">
+                    <h5>
+                        Location
+                    </h5>
+                    <p t-field="track.location_id"/>
+                </t>
+            </div>
+        </t>
+    </template>
+</odoo>
