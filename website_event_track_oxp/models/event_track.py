@@ -42,12 +42,3 @@ class EventTrack(models.Model):
             domain.append(("tag_ids", "in", self.tag_ids.ids))
 
         return self.search(domain, limit=limit)
-
-    def action_toggle_favorite(self):
-        pass
-
-    def _get_related_tracks(self):
-        pass
-
-    def _get_public_domain(self):
-        pass

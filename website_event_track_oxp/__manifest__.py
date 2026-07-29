@@ -44,9 +44,9 @@ This module is intended for Odoo Experience demonstrations.
             "website_event_track_oxp/static/src/interactions/wishlist.js",
         ],
     },
-    # "demo": [
-    #     "demo/event_track_demo.xml",
-    # ],
+    "demo": [
+        "demo/event_track_demo.xml",
+    ],
     "application": False,
     "installable": True,
 }

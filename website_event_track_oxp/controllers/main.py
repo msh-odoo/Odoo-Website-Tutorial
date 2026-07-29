@@ -3,9 +3,9 @@
 from odoo import http
 from odoo.http import request
 from odoo.addons.portal.controllers.portal import pager as portal_pager
+from odoo.addons.website_event_track.controllers.event_track import EventTrackController
 
-
-class WebsiteEventTrackController(http.Controller):
+class WebsiteEventTrackOxpController(http.Controller):
     """Controllers used during OXP demonstrations."""
 
     # ---------------------------------------------------------
@@ -38,11 +38,14 @@ class WebsiteEventTrackController(http.Controller):
             search=search,
         )
 
+        # Temporary we show only OXP tracks here
+        domain.append(('event_id', '=', self.env.ref("website_event_track_oxp.event_oxp_2026").id))
+
         if tag:
             domain.append(("tag_ids", "=", int(tag)))
 
         if speaker:
-            domain.append(("speaker_ids", "=", int(speaker)))
+            domain.append(("partner_id", "=", int(speaker)))
 
         order = {
             "name": "name",
@@ -71,6 +74,8 @@ class WebsiteEventTrackController(http.Controller):
             offset=pager["offset"],
         )
 
+        speakers = tracks.mapped('partner_id')
+
         values = {
             "tracks": tracks,
             "pager": pager,
@@ -79,7 +84,7 @@ class WebsiteEventTrackController(http.Controller):
             "current_tag": tag,
             "current_speaker": speaker,
             "tags": request.env["event.track.tag"].sudo().search([]),
-            "speakers": request.env["event.track.speaker"].sudo().search([]),
+            "speakers": speakers,
         }
 
         return request.render(
@@ -114,32 +119,68 @@ class WebsiteEventTrackController(http.Controller):
             values,
         )
 
-    # ---------------------------------------------------------
-    # Wishlist
-    # ---------------------------------------------------------
-
     @http.route(
-        "/oxp/tracks/wishlist",
-        type="jsonrpc",
+        "/oxp/tracks/<model('event.track'):track>/feedback",
+        type="http",
         auth="user",
+        website=True,
+        methods=["GET", "POST"],
     )
-    def wishlist(self, track_id):
-        """
-        Toggle wishlist for the current user.
+    def submit_feedback(self, track, **post):
+        """Submit talk feedback.
 
-        NOTE:
-        The actual implementation will call the helper
-        method provided by the wishlist model/service.
+        This route intentionally does not create any record because this
+        module demonstrates HTTP Controllers rather than ORM models.
         """
 
-        track = request.env["event.track"].browse(track_id)
+        if request.httprequest.method != 'POST':
+            return request.render(
+                "website_event_track_oxp.track_feedback",
+                {},
+            )
 
-        added = track.action_toggle_wishlist()
+        name = (post.get("name") or "").strip()
+        email = (post.get("email") or "").strip()
+        rating = (post.get("rating") or "").strip()
+        comment = (post.get("comment") or "").strip()
 
-        return {
-            "success": True,
-            "wishlist": added,
+        # ------------------------------------------------------------------
+        # Validation example
+        # ------------------------------------------------------------------
+
+        if not name:
+            return request.redirect(
+                f"/oxp/tracks/{track.id}?feedback_error=name"
+            )
+
+        if not rating:
+            return request.redirect(
+                f"/oxp/tracks/{track.id}?feedback_error=rating"
+            )
+
+        # ------------------------------------------------------------------
+        # Normally you would save the feedback here.
+        #
+        # request.env["event.track.feedback"].create({...})
+        #
+        # We intentionally skip this because the purpose of this module is to
+        # demonstrate Controllers and QWeb.
+        # ------------------------------------------------------------------
+
+        _feedback = {
+            "track": track.name,
+            "name": name,
+            "email": email,
+            "rating": rating,
+            "comment": comment,
         }
+
+        # Just to avoid linter warning in demo module
+        del _feedback
+
+        return request.redirect(
+            f"/oxp/tracks/{track.id}?feedback=success"
+        )
 
     # ---------------------------------------------------------
     # Related Talks
@@ -192,3 +233,40 @@ class WebsiteEventTrackController(http.Controller):
             }
             for track in tracks
         ]
+
+class WebsiteEventTrackController(EventTrackController):
+
+    # ---------------------------------------------------------
+    # Wishlist
+    # ---------------------------------------------------------
+
+    @http.route(
+        "/oxp/tracks/wishlist",
+        type="jsonrpc",
+        auth="user",
+    )
+    def track_reminder_toggle(self, track_id, set_reminder_on):
+        """
+        Toggle wishlist for the current user.
+
+        NOTE:
+        The actual implementation will call the helper
+        method provided by the wishlist model/service.
+        """
+
+        track = self._fetch_track(track_id, allow_sudo=True)
+        force_create = set_reminder_on or track.wishlisted_by_default
+        event_track_partner = track._get_event_track_visitors(force_create=force_create)
+
+        if not track.wishlisted_by_default:
+            if not event_track_partner or event_track_partner.is_wishlisted == set_reminder_on:  # ignore if new state = old state
+                return {'error': 'ignored'}
+            event_track_partner.is_wishlisted = set_reminder_on
+        else:
+            if not event_track_partner or event_track_partner.is_blacklisted != set_reminder_on:  # ignore if new state = old state
+                return {'error': 'ignored'}
+            event_track_partner.is_blacklisted = not set_reminder_on
+
+        result = {'reminderOn': set_reminder_on}
+
+        return result
