@@ -4,6 +4,8 @@ from odoo import _, api, fields, models
 class EventTrack(models.Model):
     _inherit = "event.track"
 
+    feedback_ids = fields.One2many("event.track.feedback", "track_id", string="Track Feedbacks")
+
     @api.model
     def _get_website_domain(self):
         return [
@@ -42,3 +44,11 @@ class EventTrack(models.Model):
             domain.append(("tag_ids", "in", self.tag_ids.ids))
 
         return self.search(domain, limit=limit)
+
+class EventTrackFeedback(models.Model):
+    _name = "event.track.feedback"
+
+    track_id = fields.Many2one("event.track")
+    name = fields.Char()
+    email = fields.Char()
+    comment = fields.Text()

@@ -136,26 +136,22 @@ class WebsiteEventTrackOxpController(http.Controller):
         if request.httprequest.method != 'POST':
             return request.render(
                 "website_event_track_oxp.track_feedback",
-                {},
+                {
+                    'track': track,
+                },
             )
 
         name = (post.get("name") or "").strip()
         email = (post.get("email") or "").strip()
-        rating = (post.get("rating") or "").strip()
         comment = (post.get("comment") or "").strip()
 
         # ------------------------------------------------------------------
         # Validation example
         # ------------------------------------------------------------------
 
-        if not name:
+        if not name and not email:
             return request.redirect(
                 f"/oxp/tracks/{track.id}?feedback_error=name"
-            )
-
-        if not rating:
-            return request.redirect(
-                f"/oxp/tracks/{track.id}?feedback_error=rating"
             )
 
         # ------------------------------------------------------------------
@@ -168,15 +164,13 @@ class WebsiteEventTrackOxpController(http.Controller):
         # ------------------------------------------------------------------
 
         _feedback = {
-            "track": track.name,
+            "track_id": track.id,
             "name": name,
             "email": email,
-            "rating": rating,
             "comment": comment,
         }
 
-        # Just to avoid linter warning in demo module
-        del _feedback
+        self.env["event.track.feedback"].sudo().create(_feedback)
 
         return request.redirect(
             f"/oxp/tracks/{track.id}?feedback=success"

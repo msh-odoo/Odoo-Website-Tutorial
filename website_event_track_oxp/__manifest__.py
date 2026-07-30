@@ -33,6 +33,7 @@ This module is intended for Odoo Experience demonstrations.
         "portal",
     ],
     "data": [
+        "security/ir.access.csv",
         "data/website_event_track_oxp_data.xml",
         "views/event_track_oxp_templates.xml",
         "views/event_track_oxp_portal_templates.xml",

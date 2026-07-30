@@ -81,7 +81,7 @@
                                         </button>
                                         <a
                                             class="btn btn-outline-danger o_wetrack_feedback"
-                                            href=""
+                                            t-attf-href="/oxp/tracks/{{track.id}}/feedback"
                                             t-att-data-track-id="track.id">
                                                 <i class="fa fa-feedback"/>
                                             Feedback
@@ -163,164 +163,87 @@
     </template>
 
     <template id="track_feedback" name="OXP Track Feedback">
-        <section class="container py-5">
-            <h3 class="mb-4">
-                Give Feedback
-            </h3>
-            <!-- ===================================================== -->
-            <!-- Success Message                                       -->
-            <!-- ===================================================== -->
-            <div
-                t-if="request.params.get('feedback') == 'success'"
-                class="alert alert-success"
-                role="alert"
-            >
-                <i class="fa fa-check-circle me-2"/>
-                Thank you! Your feedback has been submitted.
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure">
+                <section class="container py-5">
+                    <h3 class="mb-4">
+                        Give Feedback
+                    </h3>
+                    <!-- ===================================================== -->
+                    <!-- Success Message                                       -->
+                    <!-- ===================================================== -->
+                    <div
+                        t-if="request.params.get('feedback') == 'success'"
+                        class="alert alert-success"
+                        role="alert"
+                    >
+                        <i class="fa fa-check-circle me-2"/>
+                        Thank you! Your feedback has been submitted.
+                    </div>
+                    <!-- ===================================================== -->
+                    <!-- Error Message                                         -->
+                    <!-- ===================================================== -->
+                    <div
+                        t-if="request.params.get('feedback_error')"
+                        class="alert alert-danger"
+                        role="alert"
+                    >
+                        Please fill all required fields.
+                    </div>
+                    <form
+                        method="post"
+                        t-att-action="'/oxp/tracks/%s/feedback' % track.id"
+                    >
+                        <!-- CSRF Token -->
+                        <input
+                            type="hidden"
+                            name="csrf_token"
+                            t-att-value="request.csrf_token()"
+                        />
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    Name *
+                                </label>
+                                <input
+                                    class="form-control"
+                                    type="text"
+                                    name="name"
+                                    required="required"
+                                />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    Email
+                                </label>
+                                <input
+                                    class="form-control"
+                                    type="email"
+                                    name="email"
+                                />
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label">
+                                Comment
+                            </label>
+                            <textarea
+                                class="form-control"
+                                name="comment"
+                                rows="5"
+                                placeholder="Share your thoughts about this talk..."
+                            />
+                        </div>
+                        <button
+                            class="btn btn-primary"
+                            type="submit"
+                        >
+                            Submit Feedback
+                        </button>
+                    </form>
+                </section>
             </div>
-            <!-- ===================================================== -->
-            <!-- Error Message                                         -->
-            <!-- ===================================================== -->
-            <div
-                t-if="request.params.get('feedback_error')"
-                class="alert alert-danger"
-                role="alert"
-            >
-                Please fill all required fields.
-            </div>
-            <form
-                method="post"
-                t-att-action="'/oxp/tracks/%s/feedback' % track.id"
-            >
-                <!-- CSRF Token -->
-                <input
-                    type="hidden"
-                    name="csrf_token"
-                    t-att-value="request.csrf_token()"
-                />
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">
-                            Name *
-                        </label>
-                        <input
-                            class="form-control"
-                            type="text"
-                            name="name"
-                            required="required"
-                        />
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">
-                            Email
-                        </label>
-                        <input
-                            class="form-control"
-                            type="email"
-                            name="email"
-                        />
-                    </div>
-                </div>
-                <div class="mb-4">
-                    <label class="form-label d-block">
-                        Rating *
-                    </label>
-                    <div class="form-check form-check-inline">
-                        <input
-                            class="form-check-input"
-                            type="radio"
-                            name="rating"
-                            value="1"
-                            id="rating1"
-                        />
-                        <label
-                            class="form-check-label"
-                            for="rating1"
-                        >
-                            ★
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input
-                            class="form-check-input"
-                            type="radio"
-                            name="rating"
-                            value="2"
-                            id="rating2"
-                        />
-                        <label
-                            class="form-check-label"
-                            for="rating2"
-                        >
-                            ★★
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input
-                            class="form-check-input"
-                            type="radio"
-                            name="rating"
-                            value="3"
-                            id="rating3"
-                        />
-                        <label
-                            class="form-check-label"
-                            for="rating3"
-                        >
-                            ★★★
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input
-                            class="form-check-input"
-                            type="radio"
-                            name="rating"
-                            value="4"
-                            id="rating4"
-                        />
-                        <label
-                            class="form-check-label"
-                            for="rating4"
-                        >
-                            ★★★★
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input
-                            class="form-check-input"
-                            type="radio"
-                            name="rating"
-                            value="5"
-                            id="rating5"
-                            checked="checked"
-                        />
-                        <label
-                            class="form-check-label"
-                            for="rating5"
-                        >
-                            ★★★★★
-                        </label>
-                    </div>
-                </div>
-                <div class="mb-4">
-                    <label class="form-label">
-                        Comment
-                    </label>
-                    <textarea
-                        class="form-control"
-                        name="comment"
-                        rows="5"
-                        placeholder="Share your thoughts about this talk..."
-                    />
-                </div>
-                <button
-                    class="btn btn-primary"
-                    type="submit"
-                >
-                    Submit Feedback
-                </button>
-            </form>
-        </section>
+        </t>
     </template>
 
 </odoo>
