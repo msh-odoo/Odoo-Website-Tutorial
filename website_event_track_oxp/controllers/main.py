@@ -16,22 +16,8 @@ class WebsiteEventTrackOxpController(http.Controller):
         [
             "/oxp/tracks",
             "/oxp/tracks/page/<int:page>",
-        ],
-        type="http",
-        auth="public",
-        website=True,
-        sitemap=True,
-        readonly=True,
-    )
-    def track_list(
-        self,
-        page=1,
-        search=None,
-        tag=None,
-        speaker=None,
-        sort="name",
-        **kwargs,
-    ):
+        ], type="http", auth="public", website=True, sitemap=True, readonly=True,)
+    def track_list(self, page=1, search=None, tag=None, speaker=None, sort="name", **kwargs):
         Track = request.env["event.track"].sudo()
 
         domain = Track.website_search(
@@ -98,12 +84,7 @@ class WebsiteEventTrackOxpController(http.Controller):
 
     @http.route(
         "/oxp/tracks/<model('event.track'):track>",
-        type="http",
-        auth="public",
-        website=True,
-        sitemap=True,
-        readonly=True,
-    )
+        type="http", auth="public", website=True, sitemap=True, readonly=True)
     def track_detail(self, track, **kwargs):
         if not track.website_published:
             return request.not_found()
@@ -121,10 +102,7 @@ class WebsiteEventTrackOxpController(http.Controller):
 
     @http.route(
         "/oxp/tracks/<model('event.track'):track>/feedback",
-        type="http",
-        auth="user",
-        website=True,
-        methods=["GET", "POST"],
+        type="http", auth="user", website=True, methods=["GET", "POST"]
     )
     def submit_feedback(self, track, **post):
         """Submit talk feedback.
