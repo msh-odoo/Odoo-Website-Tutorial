@@ -10,6 +10,14 @@
     </record>
 
     <!-- ========================================================== -->
+    <!-- Event -->
+    <!-- ========================================================== -->
+    <record id="event_oxp_2026" model="event.event">
+        <field name="address_id" ref="location_seminar_hall_4"/>
+        <field name="event_type_id" ref="event.event_type_0"/>
+    </record>
+
+    <!-- ========================================================== -->
     <!-- Tags -->
     <!-- ========================================================== -->
 
@@ -27,81 +35,118 @@
 
     <record id="partner_mohammad_shekha" model="res.partner">
         <field name="name">Mohammad Shekha</field>
-        <field eval="[Command.set([ref('base.res_partner_category_14'), ref('base.res_partner_category_12')])]" name="category_id"/>
-        <field name="street">1839 Arbor Way</field>
-        <field name="city">Turlock</field>
-        <field name="state_id" ref='base.state_us_5'/>
-        <field name="zip">95380</field>
-        <field name="country_id" ref="base.us"/>
-        <field name="email">wood.corner26@example.com</field>
+        <field name="city">Gandhinagar</field>
+        <field name="state_id" ref='base.state_in_gj'/>
+        <field name="zip">382001</field>
+        <field name="country_id" ref="base.in"/>
+        <field name="email">msh@odoo.com</field>
         <field name="phone">(623)-853-7197</field>
-        <field name="website">http://www.wood-corner.com</field>
-        <field name="image_1920" type="bytes" file="base/static/img/res_partner_1-image.png"/>
-        <field name="vat">US12345672</field>
+        <field name="website">http://www.odoo.com</field>
+        <field name="image_1920" type="bytes" file="website_event_track_oxp/static/img/msh.jpeg"/>
     </record>
 
     <record id="partner_divyesh_vyas" model="res.partner">
         <field name="name">Divyesh Vyas</field>
+        <field name="city">Gandhinagar</field>
+        <field name="state_id" ref='base.state_in_gj'/>
+        <field name="zip">382001</field>
+        <field name="country_id" ref="base.in"/>
+        <field name="email">divy@odoo.com</field>
+        <field name="phone">(623)-853-7197</field>
+        <field name="website">http://www.odoo.com</field>
+        <field name="image_1920" type="bytes" file="website_event_track_oxp/static/img/msh.jpeg"/>
     </record>
 
-    <!-- ========================================================== -->
-    <!-- Event -->
-    <!-- ========================================================== -->
-    <record id="event_oxp_2026" model="event.event">
-        <field name="name">Odoo Experience 2026</field>
-        <field name="user_id" ref="base.user_admin"/>
-        <field name="date_begin" eval="(DateTime.now() + timedelta(days=10)).strftime('%Y-%m-%d 08:00:00')"/>
-        <field name="date_end" eval="(DateTime.now() + timedelta(days=14)).strftime('%Y-%m-%d 18:00:00')"/>
-        <field name="seats_limited">True</field>
-        <field name="seats_max">50</field>
-        <field name="address_id" ref="location_seminar_hall_4"/>
-        <field name="date_tz">Asia/Kolkata</field>
-        <field name="event_type_id" ref="event.event_type_0"/>
-        <field name="stage_id" ref="event.event_stage_booked"/>
-        <field name="tag_ids" eval="[(4, ref('tag_website_track_developer')), (4, ref('tag_website_track_functional'))]"/>
-        <field name="description" type="html">
-            <div class="oe_structure">
-                <h2 class="h5-fs">Join us for this 3-day Event</h2>
-                <p class="lead mb-3">Every year we invite our community, partners and end-users to come and meet us! It's the ideal event to get together and present new features, roadmap of future versions, achievements of the software, workshops, training sessions, etc....</p>
-                <p class="mb-3">This event is also an opportunity to showcase our partners' case studies, methodology or developments. Be there and see directly from the source the features of the version 12!
-                </p>
-                <div class="text-bg-light border-start border-2 border-secondary p-3">
-                    <p class="mb-0"><i class="oi me-2" data-icon="info"/>This event and all the conferences are in <b>English</b>!</p>
-                </div>
-                <h2 class="mb-2 h5-fs">What's new?</h2>
-                <ul class="mb-5">
-                    <li class="mb-2"><b>The Design Fair is preceded by 2 days of Training Sessions for experts!</b><br/> We propose 3 different training sessions, 2 days each.</li>
-                    <li class="mb-2"><b>The whole event is open to all public!</b> <br/>We ask a participation fee of 49.50€ for the costs for the 3 days (coffee breaks, catering, drinks and a surprising concert and beer party).<br/> For those who don't want to contribute, there is a free ticket, therefore, catering and access to evening events aren't included.</li>
-                    <li class="mb-2"><b>The plenary sessions in the morning will be shorter</b> and we will give more time for thematical meetings, conferences, workshops and tutorial sessions in the afternoon.</li>
-                </ul>
-                <h2 class="mb-2 h5-fs">Program</h2>
-                <p>Conferences, workshops and trainings will be organized in 6 rooms:</p>
-                <ul class="mb-5">
-                    <li><b>Technical Rooms</b> - One dedicated to advanced Odoo developers, one for new developers.</li>
-                    <li><b>Technical Rooms</b> - One dedicated to advanced Odoo developers, one for new developers.</li>
-                    <li><b>Business Room</b> - To discuss implementation methodologies, best sales practices, etc.</li>
-                    <li><b>Workshop Room</b> - Mainly for developers.</li>
-                </ul>
-                <div class="rounded-end border-start border-secondary p-3 mb-3" style="border-start-width: 3px !important;">
-                    <p class="mb-0"><em>If you wish to make a presentation, please send your topic proposal as soon as possible for approval to Mr. Famke Jenssens at ngh [at] yourcompany [dot] com. The presentations should be, for example, a presentation of a community module, a case study, methodology feedback, technical, etc. Each presentation must be in English.</em></p>
-                </div>
-                <p class="mb-3">For any additional information, please contact us at <a class="o_translate_inline" href="mailto:events@yourcompany.com">events@yourcompany.com</a>.</p>
-                <div class="text-bg-light border-start border-2 border-secondary p-3">
-                    <p class="mb-0">OpenElec Applications reserves the right to cancel, re-name or re-locate the event or change the dates on which it is held.</p>
-                </div>
-            </div>
-        </field>
-        <field name="website_published" eval="True"/>
-        <field name="website_menu" eval="True"/>
-        <field name="website_track" eval="True"/>
-        <field name="website_track_proposal" eval="True"/>
+    <record id="partner_sanjay_sharma" model="res.partner">
+        <field name="name">Sanjay Sharma</field>
+        <field name="city">Gandhinagar</field>
+        <field name="state_id" ref='base.state_in_gj'/>
+        <field name="zip">382001</field>
+        <field name="country_id" ref="base.in"/>
+        <field name="email">shsa@odoo.com</field>
+        <field name="phone">(623)-853-7197</field>
+        <field name="website">http://www.odoo.com</field>
+        <field name="image_1920" type="bytes" file="website_event_track_oxp/static/img/msh.jpeg"/>
+    </record>
+
+    <record id="partner_arib_ansari" model="res.partner">
+        <field name="name">Arib Ansari</field>
+        <field name="city">Gandhinagar</field>
+        <field name="state_id" ref='base.state_in_gj'/>
+        <field name="zip">382001</field>
+        <field name="country_id" ref="base.in"/>
+        <field name="email">aans@odoo.com</field>
+        <field name="phone">(623)-853-7197</field>
+        <field name="website">http://www.odoo.com</field>
+        <field name="image_1920" type="bytes" file="website_event_track_oxp/static/img/msh.jpeg"/>
+    </record>
+
+    <record id="partner_garvish" model="res.partner">
+        <field name="name">Garvish Panchal</field>
+        <field name="city">Gandhinagar</field>
+        <field name="state_id" ref='base.state_in_gj'/>
+        <field name="zip">382001</field>
+        <field name="country_id" ref="base.in"/>
+        <field name="email">divy@odoo.com</field>
+        <field name="phone">(623)-853-7197</field>
+        <field name="website">http://www.odoo.com</field>
+        <field name="image_1920" type="bytes" file="website_event_track_oxp/static/img/msh.jpeg"/>
+    </record>
+
+    <record id="partner_rushil" model="res.partner">
+        <field name="name">Rushil Patel</field>
+        <field name="city">Gandhinagar</field>
+        <field name="state_id" ref='base.state_in_gj'/>
+        <field name="zip">382001</field>
+        <field name="country_id" ref="base.in"/>
+        <field name="email">rusp@odoo.com</field>
+        <field name="phone">(623)-853-7197</field>
+        <field name="website">http://www.odoo.com</field>
+        <field name="image_1920" type="bytes" file="website_event_track_oxp/static/img/msh.jpeg"/>
+    </record>
+
+    <record id="partner_dhruv" model="res.partner">
+        <field name="name">Dhruv Chauhan</field>
+        <field name="city">Gandhinagar</field>
+        <field name="state_id" ref='base.state_in_gj'/>
+        <field name="zip">382001</field>
+        <field name="country_id" ref="base.in"/>
+        <field name="email">chdh@odoo.com</field>
+        <field name="phone">(623)-853-7197</field>
+        <field name="website">http://www.odoo.com</field>
+        <field name="image_1920" type="bytes" file="website_event_track_oxp/static/img/msh.jpeg"/>
+    </record>
+
+    <record id="partner_darpan" model="res.partner">
+        <field name="name">Darpan Daswani</field>
+        <field name="city">Gandhinagar</field>
+        <field name="state_id" ref='base.state_in_gj'/>
+        <field name="zip">382001</field>
+        <field name="country_id" ref="base.in"/>
+        <field name="email">dtda@odoo.com</field>
+        <field name="phone">(623)-853-7197</field>
+        <field name="website">http://www.odoo.com</field>
+        <field name="image_1920" type="bytes" file="website_event_track_oxp/static/img/msh.jpeg"/>
+    </record>
+
+    <record id="partner_alay" model="res.partner">
+        <field name="name">Alay Patel</field>
+        <field name="city">Gandhinagar</field>
+        <field name="state_id" ref='base.state_in_gj'/>
+        <field name="zip">382001</field>
+        <field name="country_id" ref="base.in"/>
+        <field name="email">alap@odoo.com</field>
+        <field name="phone">(623)-853-7197</field>
+        <field name="website">http://www.odoo.com</field>
+        <field name="image_1920" type="bytes" file="website_event_track_oxp/static/img/msh.jpeg"/>
     </record>
 
 
     <!-- ========================================================== -->
     <!-- Tracks -->
     <!-- ========================================================== -->
-    <record id="event_track2" model="event.track">
+
+    <record id="event_track1" model="event.track">
         <field name="name">Mastering Website Development - Controllers: Serving Website Content</field>
         <field name="is_published" eval="True"/>
         <field name="event_id" ref="event_oxp_2026"/>
@@ -109,7 +154,111 @@
         <field name="location_id" ref="location_seminar_hall_4"/>
         <field name="duration" eval="0.25"/>
         <field name="partner_id" ref="partner_mohammad_shekha"/>
-        <field name="stage_id" ref="event_track_stage1"/>
+        <field name="stage_id" ref="website_event_track.event_track_stage1"/>
+        <field name="kanban_state">done</field>
+        <field name="user_id" ref="base.user_admin"/>
+    </record>
+
+    <record id="event_track2" model="event.track">
+        <field name="name">Mastering Website Development -Interactions: Building Dynamic User Experiences</field>
+        <field name="is_published" eval="True"/>
+        <field name="event_id" ref="event_oxp_2026"/>
+        <field name="date" eval="(DateTime.now() + timedelta(days=1, hours=2, minutes=5)).strftime('%Y-%m-%d %H:%M:%S')"></field>
+        <field name="location_id" ref="location_seminar_hall_4"/>
+        <field name="duration" eval="0.25"/>
+        <field name="partner_id" ref="partner_divyesh_vyas"/>
+        <field name="stage_id" ref="website_event_track.event_track_stage1"/>
+        <field name="kanban_state">done</field>
+        <field name="user_id" ref="base.user_admin"/>
+    </record>
+
+    <record id="event_track3" model="event.track">
+        <field name="name">Design Like a Pro: Creating &amp; Customizing Odoo Website Themes</field>
+        <field name="is_published" eval="True"/>
+        <field name="event_id" ref="event_oxp_2026"/>
+        <field name="date" eval="(DateTime.now() + timedelta(days=1, hours=2, minutes=5)).strftime('%Y-%m-%d %H:%M:%S')"></field>
+        <field name="location_id" ref="location_seminar_hall_4"/>
+        <field name="duration" eval="0.25"/>
+        <field name="partner_id" ref="partner_alay"/>
+        <field name="stage_id" ref="website_event_track.event_track_stage1"/>
+        <field name="kanban_state">done</field>
+        <field name="user_id" ref="base.user_admin"/>
+    </record>
+
+    <record id="event_track4" model="event.track">
+        <field name="name">Integrate OWL in Odoo: Odoo’s JavaScript Framework</field>
+        <field name="is_published" eval="True"/>
+        <field name="event_id" ref="event_oxp_2026"/>
+        <field name="date" eval="(DateTime.now() + timedelta(days=1, hours=2, minutes=5)).strftime('%Y-%m-%d %H:%M:%S')"></field>
+        <field name="location_id" ref="location_seminar_hall_4"/>
+        <field name="duration" eval="0.25"/>
+        <field name="partner_id" ref="partner_darpan"/>
+        <field name="stage_id" ref="website_event_track.event_track_stage1"/>
+        <field name="kanban_state">done</field>
+        <field name="user_id" ref="base.user_admin"/>
+    </record>
+
+    <record id="event_track5" model="event.track">
+        <field name="name">Testing your code in Odoo: Why and how should you do it?</field>
+        <field name="is_published" eval="True"/>
+        <field name="event_id" ref="event_oxp_2026"/>
+        <field name="date" eval="(DateTime.now() + timedelta(days=1, hours=2, minutes=5)).strftime('%Y-%m-%d %H:%M:%S')"></field>
+        <field name="location_id" ref="location_seminar_hall_4"/>
+        <field name="duration" eval="0.25"/>
+        <field name="partner_id" ref="partner_arib_ansari"/>
+        <field name="stage_id" ref="website_event_track.event_track_stage1"/>
+        <field name="kanban_state">done</field>
+        <field name="user_id" ref="base.user_admin"/>
+    </record>
+
+    <record id="event_track6" model="event.track">
+        <field name="name">Postgresql Performance</field>
+        <field name="is_published" eval="True"/>
+        <field name="event_id" ref="event_oxp_2026"/>
+        <field name="date" eval="(DateTime.now() + timedelta(days=1, hours=2, minutes=5)).strftime('%Y-%m-%d %H:%M:%S')"></field>
+        <field name="location_id" ref="location_seminar_hall_4"/>
+        <field name="duration" eval="0.25"/>
+        <field name="partner_id" ref="partner_dhruv"/>
+        <field name="stage_id" ref="website_event_track.event_track_stage1"/>
+        <field name="kanban_state">done</field>
+        <field name="user_id" ref="base.user_admin"/>
+    </record>
+
+    <record id="event_track7" model="event.track">
+        <field name="name">SEO in Odoo</field>
+        <field name="is_published" eval="True"/>
+        <field name="event_id" ref="event_oxp_2026"/>
+        <field name="date" eval="(DateTime.now() + timedelta(days=1, hours=2, minutes=5)).strftime('%Y-%m-%d %H:%M:%S')"></field>
+        <field name="location_id" ref="location_seminar_hall_4"/>
+        <field name="duration" eval="0.25"/>
+        <field name="partner_id" ref="partner_garvish"/>
+        <field name="stage_id" ref="website_event_track.event_track_stage1"/>
+        <field name="kanban_state">done</field>
+        <field name="user_id" ref="base.user_admin"/>
+    </record>
+
+    <record id="event_track8" model="event.track">
+        <field name="name">Behind the Scenes of Runbot</field>
+        <field name="is_published" eval="True"/>
+        <field name="event_id" ref="event_oxp_2026"/>
+        <field name="date" eval="(DateTime.now() + timedelta(days=1, hours=2, minutes=5)).strftime('%Y-%m-%d %H:%M:%S')"></field>
+        <field name="location_id" ref="location_seminar_hall_4"/>
+        <field name="duration" eval="0.25"/>
+        <field name="partner_id" ref="partner_rushil"/>
+        <field name="stage_id" ref="website_event_track.event_track_stage1"/>
+        <field name="kanban_state">done</field>
+        <field name="user_id" ref="base.user_admin"/>
+    </record>
+
+    <record id="event_track9" model="event.track">
+        <field name="name">Power your odoo app with AI</field>
+        <field name="is_published" eval="True"/>
+        <field name="event_id" ref="event_oxp_2026"/>
+        <field name="date" eval="(DateTime.now() + timedelta(days=1, hours=2, minutes=5)).strftime('%Y-%m-%d %H:%M:%S')"></field>
+        <field name="location_id" ref="location_seminar_hall_4"/>
+        <field name="duration" eval="0.25"/>
+        <field name="partner_id" ref="partner_sanjay_sharma"/>
+        <field name="stage_id" ref="website_event_track.event_track_stage1"/>
         <field name="kanban_state">done</field>
         <field name="user_id" ref="base.user_admin"/>
     </record>

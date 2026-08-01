@@ -25,7 +25,9 @@ class WebsiteEventTrackOxpController(http.Controller):
         )
 
         # Temporary we show only OXP tracks here
-        domain.append(('event_id', '=', self.env.ref("website_event_track_oxp.event_oxp_2026").id))
+        oxp_event = self.env.ref("website_event_track_oxp.event_oxp_2026", raise_if_not_found=False)
+        if oxp_event:
+            domain.append(('event_id', '=', oxp_event.id))
 
         if tag:
             domain.append(("tag_ids", "=", int(tag)))
