@@ -29,29 +29,15 @@ class WebsiteEventTrackPortal(CustomerPortal):
 
     @http.route(
         ["/my/tracks", "/my/tracks/page/<int:page>"],
-        type="http",
-        auth="user",
-        website=True,
-    )
-    def portal_my_tracks(
-        self,
-        page=1,
-        search=None,
-        sortby="name",
-        **kw,
-    ):
+        type="http", auth="user", website=True)
+    def portal_my_tracks(self, page=1, search=None, sortby="name", **kw):
         Track = request.env["event.track"]
-
         domain = [
+            ("partner_id", "=", request.env.user.partner_id.id),
             ("website_published", "=", True),
         ]
-
         if search:
-            domain += [
-                "|",
-                ("name", "ilike", search),
-                ("description", "ilike", search),
-            ]
+            domain += ["|", ("name", "ilike", search), ("description", "ilike", search)]
 
         sortings = {
             "name": {
@@ -65,7 +51,6 @@ class WebsiteEventTrackPortal(CustomerPortal):
         }
 
         order = sortings[sortby]["order"]
-
         track_count = Track.search_count(domain)
 
         pager = portal_pager(
@@ -87,7 +72,6 @@ class WebsiteEventTrackPortal(CustomerPortal):
         )
 
         values = self._prepare_portal_layout_values()
-
         values.update({
             "tracks": tracks,
             "page_name": "track",
@@ -108,15 +92,8 @@ class WebsiteEventTrackPortal(CustomerPortal):
 
     @http.route(
         "/my/tracks/<model('event.track'):track>",
-        type="http",
-        auth="user",
-        website=True,
-    )
-    def portal_track_detail(
-        self,
-        track,
-        **kw,
-    ):
+        type="http", auth="user", website=True)
+    def portal_track_detail(self, track, **kw):
         values = self._prepare_portal_layout_values()
 
         values.update({

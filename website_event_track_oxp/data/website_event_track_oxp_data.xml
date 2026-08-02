@@ -12,6 +12,16 @@
         <field name="parent_id" ref="website.main_menu"/>
     </record>
 
+    <record id="portal_your_orders" model="portal.entry">
+        <field name="name">Your Tracks</field>
+        <field name="description">Follow, view or pay your tracks</field>
+        <field name="url">/my/tracks</field>
+        <field name="image" type="bytes" file="portal/static/src/img/portal-connection.svg"/>
+        <field name="placeholder_count">track_count</field>
+        <field name="category">client_category</field>
+        <field name="sequence" eval="50"/>
+    </record>
+
     <!-- ========================================================== -->
     <!-- Event -->
     <!-- ========================================================== -->
