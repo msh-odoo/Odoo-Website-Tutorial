@@ -33,28 +33,36 @@
     <!-- Partners -->
     <!-- ========================================================== -->
 
-    <record id="partner_mohammad_shekha" model="res.partner">
+    <record id="base.partner_admin" model="res.partner">
         <field name="name">Mohammad Shekha</field>
+        <field name="email">msh@odoo.com</field>
         <field name="city">Gandhinagar</field>
         <field name="state_id" ref='base.state_in_gj'/>
         <field name="zip">382001</field>
         <field name="country_id" ref="base.in"/>
-        <field name="email">msh@odoo.com</field>
         <field name="phone">(623)-853-7197</field>
         <field name="website">http://www.odoo.com</field>
         <field name="image_1920" type="bytes" file="website_event_track_oxp/static/img/msh.jpeg"/>
     </record>
+    <record id="base.user_admin" model="res.users">
+        <field name="name">Mohammad Shekha</field>
+        <field name="email">msh@odoo.com</field>
+    </record>
 
-    <record id="partner_divyesh_vyas" model="res.partner">
+    <record id="partner_demo_portal" model="res.partner">
         <field name="name">Divyesh Vyas</field>
+        <field name="email">divy@odoo.com</field>
         <field name="city">Gandhinagar</field>
         <field name="state_id" ref='base.state_in_gj'/>
         <field name="zip">382001</field>
         <field name="country_id" ref="base.in"/>
-        <field name="email">divy@odoo.com</field>
         <field name="phone">(623)-853-7197</field>
         <field name="website">http://www.odoo.com</field>
         <field name="image_1920" type="bytes" file="website_event_track_oxp/static/img/msh.jpeg"/>
+    </record>
+    <record id="base.demo_user0" model="res.users">
+        <field name="name">Divyesh Vyas</field>
+        <field name="email">divy@odoo.com</field>
     </record>
 
     <record id="partner_sanjay_sharma" model="res.partner">
@@ -153,7 +161,7 @@
         <field name="date" eval="(DateTime.now() + timedelta(days=1, hours=2, minutes=5)).strftime('%Y-%m-%d %H:%M:%S')"></field>
         <field name="location_id" ref="location_seminar_hall_4"/>
         <field name="duration" eval="0.25"/>
-        <field name="partner_id" ref="partner_mohammad_shekha"/>
+        <field name="partner_id" ref="base.partner_admin"/>
         <field name="stage_id" ref="website_event_track.event_track_stage1"/>
         <field name="kanban_state">done</field>
         <field name="user_id" ref="base.user_admin"/>
@@ -167,7 +175,7 @@
         <field name="date" eval="(DateTime.now() + timedelta(days=1, hours=2, minutes=5)).strftime('%Y-%m-%d %H:%M:%S')"></field>
         <field name="location_id" ref="location_seminar_hall_4"/>
         <field name="duration" eval="0.25"/>
-        <field name="partner_id" ref="partner_divyesh_vyas"/>
+        <field name="partner_id" ref="base.partner_demo_portal"/>
         <field name="stage_id" ref="website_event_track.event_track_stage1"/>
         <field name="kanban_state">done</field>
         <field name="user_id" ref="base.user_admin"/>
