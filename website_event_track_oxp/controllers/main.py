@@ -61,8 +61,8 @@ class WebsiteEventTrackOxpController(http.Controller):
             limit=12,
             offset=pager["offset"],
         )
-
         speakers = tracks.mapped('partner_id')
+        tags = request.env["event.track.tag"].sudo().search([])
 
         values = {
             "tracks": tracks,
@@ -71,7 +71,7 @@ class WebsiteEventTrackOxpController(http.Controller):
             "sort": sort,
             "current_tag": tag,
             "current_speaker": speaker,
-            "tags": request.env["event.track.tag"].sudo().search([]),
+            "tags": tags,
             "speakers": speakers,
         }
 
@@ -166,9 +166,7 @@ class WebsiteEventTrackOxpController(http.Controller):
         auth="public",
     )
     def related_tracks(self, track_id):
-
         track = request.env["event.track"].sudo().browse(track_id)
-
         return [
             {
                 "id": related.id,
@@ -188,9 +186,7 @@ class WebsiteEventTrackOxpController(http.Controller):
         auth="public",
     )
     def search_suggestions(self, term):
-
         Track = request.env["event.track"].sudo()
-
         tracks = Track.search(
             [
                 ("website_published", "=", True),
