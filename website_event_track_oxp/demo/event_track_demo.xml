@@ -157,6 +157,7 @@
         <field name="stage_id" ref="website_event_track.event_track_stage1"/>
         <field name="kanban_state">done</field>
         <field name="user_id" ref="base.user_admin"/>
+        <field name="tag_ids" eval="[(4, ref('tag_website_track_developer'))]"/>
     </record>
 
     <record id="event_track2" model="event.track">
@@ -170,6 +171,7 @@
         <field name="stage_id" ref="website_event_track.event_track_stage1"/>
         <field name="kanban_state">done</field>
         <field name="user_id" ref="base.user_admin"/>
+        <field name="tag_ids" eval="[(4, ref('tag_website_track_developer'))]"/>
     </record>
 
     <record id="event_track3" model="event.track">
@@ -183,6 +185,7 @@
         <field name="stage_id" ref="website_event_track.event_track_stage1"/>
         <field name="kanban_state">done</field>
         <field name="user_id" ref="base.user_admin"/>
+        <field name="tag_ids" eval="[(4, ref('tag_website_track_developer'))]"/>
     </record>
 
     <record id="event_track4" model="event.track">
@@ -196,6 +199,7 @@
         <field name="stage_id" ref="website_event_track.event_track_stage1"/>
         <field name="kanban_state">done</field>
         <field name="user_id" ref="base.user_admin"/>
+        <field name="tag_ids" eval="[(4, ref('tag_website_track_developer'))]"/>
     </record>
 
     <record id="event_track5" model="event.track">
@@ -209,6 +213,7 @@
         <field name="stage_id" ref="website_event_track.event_track_stage1"/>
         <field name="kanban_state">done</field>
         <field name="user_id" ref="base.user_admin"/>
+        <field name="tag_ids" eval="[(4, ref('tag_website_track_developer'))]"/>
     </record>
 
     <record id="event_track6" model="event.track">
@@ -222,6 +227,7 @@
         <field name="stage_id" ref="website_event_track.event_track_stage1"/>
         <field name="kanban_state">done</field>
         <field name="user_id" ref="base.user_admin"/>
+        <field name="tag_ids" eval="[(4, ref('tag_website_track_developer'))]"/>
     </record>
 
     <record id="event_track7" model="event.track">
@@ -235,6 +241,7 @@
         <field name="stage_id" ref="website_event_track.event_track_stage1"/>
         <field name="kanban_state">done</field>
         <field name="user_id" ref="base.user_admin"/>
+        <field name="tag_ids" eval="[(4, ref('tag_website_track_developer'))]"/>
     </record>
 
     <record id="event_track8" model="event.track">
@@ -248,6 +255,7 @@
         <field name="stage_id" ref="website_event_track.event_track_stage1"/>
         <field name="kanban_state">done</field>
         <field name="user_id" ref="base.user_admin"/>
+        <field name="tag_ids" eval="[(4, ref('tag_website_track_developer'))]"/>
     </record>
 
     <record id="event_track9" model="event.track">
@@ -261,6 +269,7 @@
         <field name="stage_id" ref="website_event_track.event_track_stage1"/>
         <field name="kanban_state">done</field>
         <field name="user_id" ref="base.user_admin"/>
+        <field name="tag_ids" eval="[(4, ref('tag_website_track_developer'))]"/>
     </record>
 
 </odoo>
