@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="website_event_track_oxp.s_oxp_track_list_edit_message" owl="1">
+        <div class="col-12 alert alert-warning border border-warning shadow-sm text-center py-4 mb-0">
+            <i class="fa fa-save fa-2x d-block mb-2"/>
+            <h3 class="h5">Save to load your talks</h3>
+            <p class="mb-0">The live event list will appear after you save this page.</p>
+        </div>
+    </t>
+
+    <t t-name="website_event_track_oxp.s_oxp_track_list_cards">
+        <t t-foreach="tracks" t-as="track" t-key="track.id">
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h5"><a t-att-href="track.url" t-out="track.name"/></h3>
+                        <div class="mt-3">
+                            <span t-foreach="track.tags" t-as="tag" t-key="tag.id"
+                                  class="badge text-bg-secondary me-1" t-out="tag.name"/>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button t-att-class="{
+                                    'btn o_wetrack_wishlist': true,
+                                    'btn-danger': track.isReminderOn,
+                                    'btn-outline-danger': !track.isReminderOn,
+                                }"
+                                t-att-data-track-id="track.id">
+                            <i t-att-class="{
+                                   'fa fa-heart': true,
+                                   'fa-solid': track.isReminderOn,
+                                   'fa-regular': !track.isReminderOn,
+                               }"/>
+                            Wishlist
+                        </button>
+                        <a class="btn btn-outline-primary ms-2" t-att-href="track.url">View talk</a>
+                    </div>
+                </div>
+            </div>
+        </t>
+        <p t-if="!tracks.length" class="col-12 text-muted mb-0">No talks are available yet.</p>
+    </t>
+</templates>

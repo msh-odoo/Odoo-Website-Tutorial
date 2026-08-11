@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="s_oxp_track_list" name="OXP Dynamic Track List">
+        <section class="s_oxp_track_list py-5"
+                 data-snippet="s_oxp_track_list"
+                 data-limit="6">
+            <div class="container">
+                <div class="row align-items-end mb-4">
+                    <div class="col-lg-7">
+                        <h2 class="s_oxp_track_list_heading h4 mb-1">OXP Talks <span class="s_oxp_track_list_search_title"/></h2>
+                        <p class="text-muted mb-0">Discover the latest Odoo Experience talks.</p>
+                    </div>
+                    <div class="col-lg-5 mt-3 mt-lg-0">
+                        <form class="s_oxp_track_list_search_form d-flex" role="search">
+                            <input class="form-control s_oxp_track_list_search"
+                                   type="search"
+                                   name="search"
+                                   placeholder="Search talks..."
+                                   aria-label="Search talks"/>
+                            <button class="btn btn-primary ms-2" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="row s_oxp_track_list_items" aria-live="polite">
+                    <!-- Preview while adding the snippet; replaced by the interaction. -->
+                    <t t-foreach="range(3)" t-as="index">
+                        <div class="col-lg-4 mb-4">
+                            <div class="card h-100 shadow-sm placeholder-glow">
+                                <div class="card-body">
+                                    <span class="placeholder col-8 mb-3"/>
+                                    <span class="placeholder col-5"/>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="placeholder col-4"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

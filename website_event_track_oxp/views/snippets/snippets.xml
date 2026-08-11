@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="snippets" inherit_id="website.snippets" name="OXP track snippets">
+        <xpath expr="//t[@t-snippet='website.s_text_image']" position="before">
+            <t t-snippet="website_event_track_oxp.s_oxp_track_list"
+               string="OXP Track List"
+               group="content">
+                <keywords>event, talk, track, OXP</keywords>
+            </t>
+        </xpath>
+    </template>
+</odoo>
