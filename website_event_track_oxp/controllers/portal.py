@@ -18,10 +18,23 @@ class WebsiteEventTrackPortal(CustomerPortal):
 
         if "track_count" in counters:
             values["track_count"] = request.env["event.track"].search_count([
+                ("partner_id", "=", request.env.user.partner_id.id),
                 ("website_published", "=", True),
             ])
 
         return values
+
+    def _prepare_portal_counter_values(self, counter):
+        """ Return the values needed to compute the record count of the given badge counter in portal.
+
+        Override to return a tuple with:
+        - the model name on which to execute the search_count,
+        - the record domain,
+        - the access level required as a string, or 'sudo'
+        """
+        if counter == 'track_count':
+            return 'event.track', [("partner_id", "=", request.env.user.partner_id.id), ("website_published", "=", True)], 'read'
+        return super()._prepare_portal_counter_values(counter)
 
     # ---------------------------------------------------------
     # My Talks

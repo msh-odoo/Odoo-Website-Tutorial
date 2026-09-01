@@ -4,7 +4,6 @@ from odoo import http
 from odoo.http import request
 from odoo.addons.portal.controllers.portal import pager as portal_pager
 from odoo.addons.website_event_track.controllers.event_track import EventTrackController
-
 class WebsiteEventTrackOxpController(http.Controller):
     """Controllers used during OXP demonstrations."""
 

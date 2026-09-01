@@ -20,6 +20,7 @@
         <field name="placeholder_count">track_count</field>
         <field name="category">client_category</field>
         <field name="sequence" eval="50"/>
+        <field name="show_in_portal" eval="True"/>
     </record>
 
     <!-- ========================================================== -->

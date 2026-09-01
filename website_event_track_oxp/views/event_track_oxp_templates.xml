@@ -72,7 +72,7 @@
                                         </button>
                                         <a
                                             class="btn btn-outline-danger o_wetrack_feedback"
-                                            t-attf-href="/oxp/tracks/{{track.id}}/feedback"
+                                            t-attf-href="/oxp/tracks/#{slug(track)}/feedback"
                                             t-att-data-track-id="track.id">
                                                 <i class="fa fa-feedback"/>
                                             Feedback
