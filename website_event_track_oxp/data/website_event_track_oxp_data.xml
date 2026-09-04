@@ -14,7 +14,7 @@
 
     <record id="portal_your_orders" model="portal.entry">
         <field name="name">Your Tracks</field>
-        <field name="description">Follow, view or pay your tracks</field>
+        <field name="description">View your tracks</field>
         <field name="url">/my/tracks</field>
         <field name="image" type="bytes" file="portal/static/src/img/portal-connection.svg"/>
         <field name="placeholder_count">track_count</field>

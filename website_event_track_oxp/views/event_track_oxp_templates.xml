@@ -8,6 +8,7 @@
     <template id="track_list" name="OXP Tracks">
         <t t-call="website.layout">
             <div id="wrap" class="oe_structure">
+                <div class="oe_structure oe_empty"/>
                 <section class="container py-5 o_wetrack_list">
                     <div class="row mb-4">
                         <div t-if="not tracks" class="col-lg-8">
@@ -84,6 +85,7 @@
                     </div>
                     <t t-call="website.pager"/>
                 </section>
+                <div class="oe_structure oe_empty"/>
             </div>
         </t>
     </template>
