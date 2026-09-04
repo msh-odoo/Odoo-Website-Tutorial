@@ -152,7 +152,7 @@ class WebsiteEventTrackOxpController(http.Controller):
         self.env["event.track.feedback"].sudo().create(_feedback)
 
         return request.redirect(
-            f"/oxp/tracks/{track.id}?feedback=success"
+            f"/oxp/tracks/{track.id}/feedback?feedback=success"
         )
 
     # ---------------------------------------------------------

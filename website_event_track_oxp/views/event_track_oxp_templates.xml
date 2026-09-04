@@ -64,10 +64,10 @@
                                             class="btn btn-outline-danger o_wetrack_wishlist"
                                             t-att-data-track-id="track.id">
                                             <t t-if="track.is_reminder_on">
-                                                <i class="fa fa-regular fa-heart"/>
+                                                <i class="oi" data-icon="favorite"/>
                                             </t>
                                             <t t-else="">
-                                                <i class="fa fa-heart fa-solid"/>
+                                                <i class="oi oi-filled" data-icon="favorite"/>
                                             </t>
                                             Wishlist
                                         </button>
@@ -75,7 +75,7 @@
                                             class="btn btn-outline-danger o_wetrack_feedback"
                                             t-attf-href="/oxp/tracks/#{slug(track)}/feedback"
                                             t-att-data-track-id="track.id">
-                                                <i class="fa fa-feedback"/>
+                                                <i class="oi" data-icon="reply"/>
                                             Feedback
                                         </a>
                                     </div>
@@ -174,7 +174,7 @@
                         class="alert alert-success"
                         role="alert"
                     >
-                        <i class="fa fa-check-circle me-2"/>
+                        <i class="oi oi-filled" data-icon="check_circle"/>
                         Thank you! Your feedback has been submitted.
                     </div>
                     <!-- ===================================================== -->
